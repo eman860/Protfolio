@@ -277,9 +277,6 @@ function App() {
               </li>
             ))}
           </ul>
-          <a href="https://github.com/eman860" target="_blank" rel="noreferrer" className="nav-github">
-            <span>🐙</span> GitHub
-          </a>
           <button className="mobile-menu-btn" id="mobileMenuBtn" onClick={() => setMenuOpen((open) => !open)}>
             <span />
             <span />
