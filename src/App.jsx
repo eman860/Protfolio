@@ -122,7 +122,6 @@ const contacts = [
   { href: 'https://www.linkedin.com/in/imman-10im', label: '💼', title: 'LinkedIn' },
   { href: 'https://github.com/eman860', label: '🐙', title: 'GitHub' },
   { href: 'https://mail.google.com/mail/u/0/?hl=en#inbox', label: '📧', title: 'Email' },
-  { href: 'https://www.instagram.com/_x.i7m.__/?__pwa=1', label: '📸', title: 'Instagram' },
 ];
 
 function App() {
