@@ -578,11 +578,11 @@ function App() {
               Technical <span className="gradient-text">Skills</span>
             </h2>
             <p className="section-subtitle">
-              Comprehensive toolkit for building performant full-stack applications, intelligent algorithms, and responsive interfaces
+              Comprehensive toolkit for building full-stack applications, intelligent algorithms, and responsive interfaces
             </p>
           </div>
 
-          {/* Infinite Marquee Ticker */}
+          {/* Infinite Scrolling Marquee Ticker */}
           <div className="skills-marquee-wrap">
             <div className="skills-marquee-track">
               {marqueeSkills.concat(marqueeSkills).map((item, idx) => (
@@ -605,85 +605,49 @@ function App() {
                   onClick={() => setActiveCategory(cat.id)}
                   type="button"
                 >
-                  <span className="tab-label">{cat.label}</span>
+                  {cat.label}
                   <span className="tab-badge">{count}</span>
                 </button>
               );
             })}
           </div>
 
-          {/* Modern Bento Tech Cards Grid */}
-          <div className="modern-skills-grid">
+          {/* Skills Grid */}
+          <div className="skills-grid">
             {filteredSkills.map((skill) => (
               <div
-                className="skill-card-modern glass-card reveal visible"
+                className="skill-card glass-card reveal visible"
                 key={skill.name}
-                style={{
-                  '--skill-brand': skill.color,
-                  '--skill-glow': skill.glowColor,
-                }}
+                style={{ '--skill-color': skill.color, '--skill-glow': skill.glowColor }}
               >
-                <div className="skill-card-glow-overlay" />
-                
-                <div className="skill-card-header">
-                  <div className="skill-icon-box" style={{ background: skill.glowColor, borderColor: skill.color }}>
-                    {skill.icon}
-                  </div>
-                  <div className="skill-meta-right">
-                    <span className="skill-level-pill" style={{ color: skill.color, borderColor: skill.color }}>
+                {/* Left: icon */}
+                <div className="skill-icon-wrap" style={{ background: skill.glowColor, borderColor: `${skill.color}40` }}>
+                  {skill.icon}
+                </div>
+
+                {/* Right: info */}
+                <div className="skill-right">
+                  <div className="skill-row-top">
+                    <div>
+                      <h3 className="skill-name">{skill.name}</h3>
+                      <span className="skill-category-tag">{skill.tag}</span>
+                    </div>
+                    <span className="skill-level-badge" style={{ color: skill.color }}>
                       {skill.level}
                     </span>
                   </div>
-                </div>
-
-                <div className="skill-card-content">
-                  <h3 className="skill-title">{skill.name}</h3>
-                  <span className="skill-tag-pill">{skill.tag}</span>
-                  <p className="skill-desc">{skill.desc}</p>
-                </div>
-
-                <div className="skill-card-footer">
-                  <div className="skill-gauge-label">Mastery</div>
-                  <div className="skill-gauge-dots">
-                    {[1, 2, 3, 4, 5].map((dot) => (
-                      <span
-                        key={dot}
-                        className={`gauge-dot ${dot <= skill.dots ? 'active' : ''}`}
-                        style={{
-                          backgroundColor: dot <= skill.dots ? skill.color : 'rgba(255, 255, 255, 0.1)',
-                          boxShadow: dot <= skill.dots ? `0 0 10px ${skill.color}` : 'none',
-                        }}
-                      />
-                    ))}
+                  <div className="skill-bar-track">
+                    <div
+                      className="skill-bar-fill"
+                      style={{
+                        width: `${(skill.dots / 5) * 100}%`,
+                        background: `linear-gradient(90deg, ${skill.color}, var(--accent-purple))`,
+                      }}
+                    />
                   </div>
                 </div>
               </div>
             ))}
-          </div>
-
-          {/* Technical Strengths Summary Banner */}
-          <div className="skills-summary-grid reveal">
-            <div className="summary-card glass-card">
-              <div className="summary-icon">⚡</div>
-              <div className="summary-info">
-                <h4>Full-Stack Architecture</h4>
-                <p>Enterprise Java (JSP/Servlets), MySQL, and modern reactive frontends</p>
-              </div>
-            </div>
-            <div className="summary-card glass-card">
-              <div className="summary-icon">🧠</div>
-              <div className="summary-info">
-                <h4>AI & Machine Learning</h4>
-                <p>Research paper presented at ICCIS-3.0 in Deep Learning & Vision</p>
-              </div>
-            </div>
-            <div className="summary-card glass-card">
-              <div className="summary-icon">🎯</div>
-              <div className="summary-info">
-                <h4>DSA & Problem Solving</h4>
-                <p>25+ DSA algorithmic challenges solved with high efficiency</p>
-              </div>
-            </div>
           </div>
         </section>
 
@@ -705,93 +669,62 @@ function App() {
               return (
                 <button
                   key={cat.id}
-                  className={`project-tab-pill ${isActive ? 'active' : ''}`}
+                  className={`skill-tab-pill ${isActive ? 'active' : ''}`}
                   onClick={() => setActiveProjectCategory(cat.id)}
                   type="button"
                 >
-                  <span className="tab-label">{cat.label}</span>
+                  {cat.label}
                   <span className="tab-badge">{count}</span>
                 </button>
               );
             })}
           </div>
 
-          {/* Modern Projects Showcase Grid */}
-          <div className="modern-projects-grid">
+          {/* Projects Grid */}
+          <div className="projects-grid">
             {filteredProjects.map((project) => (
               <div
-                className={`project-card-modern glass-card reveal visible ${project.featured ? 'featured-card' : ''}`}
+                className={`project-card glass-card reveal visible ${project.featured ? 'featured-card' : ''}`}
                 key={project.title}
-                style={{
-                  '--proj-color': project.accentColor,
-                  '--proj-glow': project.accentGlow,
-                }}
+                style={{ '--proj-color': project.accentColor }}
               >
-                {/* Browser Mockup Window Bar */}
-                <div className="proj-window-header">
-                  <div className="proj-window-dots">
-                    <span className="dot dot-red" />
-                    <span className="dot dot-yellow" />
-                    <span className="dot dot-green" />
-                  </div>
-                  <div className="proj-route-bar">
-                    <span className="route-icon">🔒</span>
-                    <span className="route-text">{project.route}</span>
-                  </div>
-                  {project.badge && (
-                    <div className="proj-badge-pill" style={{ color: project.accentColor, borderColor: project.accentColor }}>
-                      {project.badge}
-                    </div>
-                  )}
-                </div>
-
-                {/* Visual Banner */}
-                <div className="proj-banner-preview" style={{ background: `linear-gradient(135deg, ${project.accentGlow}, rgba(15, 23, 42, 0.95))` }}>
-                  <div className="proj-banner-glow" style={{ background: project.accentColor }} />
-                  <div className="proj-banner-icon-badge" style={{ borderColor: project.accentColor }}>
+                {/* Card Header */}
+                <div className="proj-card-header">
+                  <div className="proj-icon-circle" style={{ background: project.accentGlow, borderColor: `${project.accentColor}40` }}>
                     <span>{project.icon}</span>
                   </div>
-                  <div className="proj-banner-meta">
-                    <span className="proj-category-tag">{project.subtitle}</span>
+                  <div className="proj-header-meta">
+                    <span className="proj-category-pill" style={{ color: project.accentColor, borderColor: `${project.accentColor}40` }}>
+                      {project.subtitle}
+                    </span>
+                    {project.featured && (
+                      <span className="proj-featured-badge">★ Featured</span>
+                    )}
                   </div>
                 </div>
 
-                {/* Project Body */}
-                <div className="proj-body">
-                  <h3 className="proj-title">{project.title}</h3>
-                  <p className="proj-desc">{project.description}</p>
-
-                  {/* Highlights Bar */}
-                  {project.highlights && (
-                    <div className="proj-highlights">
-                      {project.highlights.map((item, idx) => (
-                        <span className="highlight-pill" key={idx}>
-                          ✓ {item}
-                        </span>
-                      ))}
-                    </div>
-                  )}
+                {/* Card Body */}
+                <div className="proj-card-body">
+                  <h3 className="proj-card-title">{project.title}</h3>
+                  <p className="proj-card-desc">{project.description}</p>
 
                   {/* Tech Tags */}
                   <div className="proj-tags-wrap">
                     {project.tags.map((tag) => (
-                      <span className="proj-tech-tag" key={tag}>
-                        {tag}
-                      </span>
+                      <span className="proj-tech-tag" key={tag}>{tag}</span>
                     ))}
                   </div>
                 </div>
 
-                {/* Card Action Links */}
-                <div className="proj-actions">
+                {/* Card Footer — Links */}
+                <div className="proj-card-footer">
                   {project.links.map((link) => (
                     <a
                       key={link.label}
                       href={link.href}
                       target={link.href.startsWith('http') ? '_blank' : '_self'}
                       rel="noreferrer"
-                      className={`proj-btn ${link.primary ? 'proj-btn-primary' : 'proj-btn-secondary'}`}
-                      style={link.primary ? { background: `linear-gradient(135deg, ${project.accentColor}, var(--accent-purple))` } : {}}
+                      className={link.primary ? 'proj-link-primary' : 'proj-link-secondary'}
                     >
                       {link.label}
                     </a>
