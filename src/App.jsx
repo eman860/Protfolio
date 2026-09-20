@@ -13,31 +13,199 @@ const navLinks = [
 
 const roles = ['Full-Stack Developer', 'Java | JSP', 'Web Developer', 'Problem Solver'];
 
-const skillGroups = [
+const skillCategories = [
+  { id: 'all', label: 'All Technologies' },
+  { id: 'languages', label: 'Programming' },
+  { id: 'web', label: 'Web & UI' },
+  { id: 'backend', label: 'Backend & DB' },
+  { id: 'tools', label: 'Tools & AI' },
+];
+
+const allSkills = [
   {
-    title: '💻 Programming Languages',
-    skills: [
-      { name: 'Python', value: 80 },
-      { name: 'JavaScript', value: 75 },
-      { name: 'Java', value: 70 },
-    ],
+    name: 'Python',
+    category: 'languages',
+    level: 'Advanced',
+    dots: 5,
+    color: '#38BDF8',
+    glowColor: 'rgba(56, 189, 248, 0.25)',
+    tag: 'Core Language',
+    desc: 'Data Structures, AI/ML model development, Automation scripts',
+    icon: (
+      <svg viewBox="0 0 24 24" width="28" height="28" fill="none">
+        <path d="M11.9 1.1c-4.3 0-4.1 1.9-4.1 1.9l.01 2h4.2v.6H5.8S2 5.2 2 9.6c0 4.4 3.3 4.2 3.3 4.2h2v-2.8s-.1-3.3 3.3-3.3h5.6s3.2.1 3.2-3.1c0-3.3-2.9-3.5-2.9-3.5h-2.6zm-2.4 2.1a.9.9 0 1 1 0 1.8.9.9 0 0 1 0-1.8z" fill="#38BDF8"/>
+        <path d="M12.1 22.9c4.3 0 4.1-1.9 4.1-1.9l-.01-2h-4.2v-.6h6.2s3.8.4 3.8-4c0-4.4-3.3-4.2-3.3-4.2h-2v2.8s.1 3.3-3.3 3.3H7.8s-3.2-.1-3.2 3.1c0 3.3 2.9 3.5 2.9 3.5h2.6zm2.4-2.1a.9.9 0 1 1 0-1.8.9.9 0 0 1 0 1.8z" fill="#FACC15"/>
+      </svg>
+    ),
   },
   {
-    title: '🌐 Web Technologies',
-    skills: [
-      { name: 'HTML', value: 85 },
-      { name: 'CSS', value: 78 },
-      { name: 'Bootstrap', value: 65 },
-    ],
+    name: 'Java',
+    category: 'languages',
+    level: 'Proficient',
+    dots: 4,
+    color: '#FB923C',
+    glowColor: 'rgba(251, 146, 60, 0.25)',
+    tag: 'Core Language',
+    desc: 'Object-Oriented Programming, JSP, Servlets, Data Structures',
+    icon: (
+      <svg viewBox="0 0 24 24" width="28" height="28" fill="#FB923C">
+        <path d="M8.8 19.4s-.8.5 1 .7c2.2.3 3.4.2 5.9-.2 0 0 .8.5 1.8.3-4.6 1.8-10.4.3-8.7-.8zm-.6-2.5s-1 .8 1 .9c2.6.2 4.9.3 8.3-.3 0 0 .6.4 1.3.4-5.3 1.5-12.7.5-10.6-1zm4-3.7c1.3 1.3-.3 2.6-.3 2.6s3.5-1.8 1.9-3.7c-1.6-1.8-3.1-2.7 4.2-5.7-5.9 1.4-8 4.2-5.8 6.8zm5.5 3.9c-2.4.6-5.8.7-8.8.2-1.3-.2-.5-1 .3-1.1 3-.3 6.1-.3 8.8.4.6.1.3.4-.3.5zM12.4 2C9.7 5.1 14 7.6 12 11c3.5-3.3 1.4-6.3.4-9z"/>
+      </svg>
+    ),
   },
   {
-    title: '🛠️ Tools & Technologies',
-    skills: [
-      { name: 'Git & GitHub', value: 70 },
-      { name: 'VS Code', value: 90 },
-      { name: 'SQL', value: 60 },
-    ],
+    name: 'JavaScript',
+    category: 'languages',
+    level: 'Advanced',
+    dots: 4,
+    color: '#FACC15',
+    glowColor: 'rgba(250, 204, 21, 0.25)',
+    tag: 'Web & Scripts',
+    desc: 'Modern ES6+, Async/Await, DOM manipulation, Dynamic APIs',
+    icon: (
+      <svg viewBox="0 0 24 24" width="28" height="28" fill="#FACC15">
+        <path d="M3 3h18v18H3V3zm13.7 13.9c-.8 1.4-2 2.2-3.8 2.2-2.8 0-4.3-1.7-4.3-4.1 0-2.6 1.7-4.2 4.4-4.2 1.4 0 2.5.5 3.2 1.3l-1.3 1.3c-.5-.6-1.1-.9-1.9-.9-1.4 0-2.3.9-2.3 2.5 0 1.5.8 2.4 2.2 2.4.9 0 1.5-.4 1.9-.9v-1.1h-2v-1.7h3.6v3.5zM8.5 15.6c0 1.9-.9 2.8-2.6 2.8-.8 0-1.6-.3-2.1-.8l1-1.3c.4.3.7.5 1.1.5.6 0 1-.4 1-1.2V11H8.5v4.6z"/>
+      </svg>
+    ),
   },
+  {
+    name: 'HTML5',
+    category: 'web',
+    level: 'Advanced',
+    dots: 5,
+    color: '#F97316',
+    glowColor: 'rgba(249, 115, 22, 0.25)',
+    tag: 'Semantic Markup',
+    desc: 'Clean markup hierarchy, SEO best practices, Accessibility standards',
+    icon: (
+      <svg viewBox="0 0 24 24" width="28" height="28" fill="none">
+        <path d="M4.2 2.5l1.6 17.5 6.2 1.7 6.2-1.7 1.6-17.5H4.2z" fill="#E34F26"/>
+        <path d="M12 4.1v16l4.9-1.4 1.3-14.6H12z" fill="#EF652A"/>
+        <path d="M12 7.7H8l.3 3.3h3.7v-3.3zm0 6.6H9.7l-.2-2.2H8l.4 4.5 3.6 1v-3.3zm0-6.6h4l-.4 4.5H12v-2.2h1.6l.2-2.3H12v-0zm0 6.6v3.3l3.6-1 .4-4.5h-4z" fill="#fff"/>
+      </svg>
+    ),
+  },
+  {
+    name: 'CSS3',
+    category: 'web',
+    level: 'Advanced',
+    dots: 4,
+    color: '#38BDF8',
+    glowColor: 'rgba(56, 189, 248, 0.25)',
+    tag: 'Styling & Layouts',
+    desc: 'Flexbox, CSS Grid layouts, Glassmorphism, Responsive animations',
+    icon: (
+      <svg viewBox="0 0 24 24" width="28" height="28" fill="none">
+        <path d="M4.2 2.5l1.6 17.5 6.2 1.7 6.2-1.7 1.6-17.5H4.2z" fill="#1572B6"/>
+        <path d="M12 4.1v16l4.9-1.4 1.3-14.6H12z" fill="#33A9DC"/>
+        <path d="M12 7.7H8l.3 3.3h3.7v-3.3zm0 6.6H9.7l-.2-2.2H8l.4 4.5 3.6 1v-3.3zm0-6.6h4l-.4 4.5H12v-2.2h1.6l.2-2.3H12v-0zm0 6.6v3.3l3.6-1 .4-4.5h-4z" fill="#fff"/>
+      </svg>
+    ),
+  },
+  {
+    name: 'Bootstrap',
+    category: 'web',
+    level: 'Proficient',
+    dots: 4,
+    color: '#C084FC',
+    glowColor: 'rgba(192, 132, 252, 0.25)',
+    tag: 'UI Framework',
+    desc: 'Rapid UI prototyping, Grid systems, Custom interactive components',
+    icon: (
+      <svg viewBox="0 0 24 24" width="28" height="28" fill="#A855F7">
+        <path d="M5.5 2h13a3.5 3.5 0 0 1 3.5 3.5v13a3.5 3.5 0 0 1-3.5 3.5h-13A3.5 3.5 0 0 1 2 18.5v-13A3.5 3.5 0 0 1 5.5 2zm5 4.5a.5.5 0 0 0-.5.5v10a.5.5 0 0 0 .5.5h4c2.2 0 3.5-1.1 3.5-2.7 0-1.1-.7-2-1.7-2.3 1-.3 1.5-1.2 1.5-2.1 0-1.6-1.3-2.9-3.3-2.9h-4zm2 2.2h1.8c.8 0 1.4.5 1.4 1.3 0 .7-.6 1.3-1.4 1.3h-1.8V8.7zm0 4.4h2.1c.9 0 1.6.6 1.6 1.4s-.7 1.4-1.6 1.4h-2.1v-2.8z"/>
+      </svg>
+    ),
+  },
+  {
+    name: 'JSP & Servlets',
+    category: 'backend',
+    level: 'Proficient',
+    dots: 4,
+    color: '#22D3EE',
+    glowColor: 'rgba(34, 211, 238, 0.25)',
+    tag: 'Enterprise Java',
+    desc: 'MVC architecture, Session authentication, Java backend endpoints',
+    icon: (
+      <svg viewBox="0 0 24 24" width="28" height="28" fill="#22D3EE">
+        <path d="M4 4h16a2 2 0 0 1 2 2v4a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2zm0 8h16a2 2 0 0 1 2 2v4a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2v-4a2 2 0 0 1 2-2zm2-5a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm0 8a1 1 0 1 0 0 2 1 1 0 0 0 0-2z"/>
+      </svg>
+    ),
+  },
+  {
+    name: 'SQL / MySQL',
+    category: 'backend',
+    level: 'Proficient',
+    dots: 4,
+    color: '#38BDF8',
+    glowColor: 'rgba(56, 189, 248, 0.25)',
+    tag: 'Database Management',
+    desc: 'Schema design, complex join queries, constraints, data integrity',
+    icon: (
+      <svg viewBox="0 0 24 24" width="28" height="28" fill="#38BDF8">
+        <path d="M12 2C6.5 2 2 3.3 2 5v14c0 1.7 4.5 3 10 3s10-1.3 10-3V5c0-1.7-4.5-3-10-3zm0 2c4.4 0 8 1 8 1.5S16.4 7 12 7 4 6 4 5.5 7.6 4 12 4zm0 6c4.4 0 8-1 8-1.5V12c0 .6-3.6 1.5-8 1.5S4 12.6 4 12v-1.5c0 .5 3.6 1.5 8 1.5zm0 6c4.4 0 8-1 8-1.5V18c0 .6-3.6 1.5-8 1.5S4 18.6 4 18v-1.5c0 .5 3.6 1.5 8 1.5z"/>
+      </svg>
+    ),
+  },
+  {
+    name: 'Git & GitHub',
+    category: 'tools',
+    level: 'Advanced',
+    dots: 4,
+    color: '#F43F5E',
+    glowColor: 'rgba(244, 63, 94, 0.25)',
+    tag: 'Version Control',
+    desc: 'Branching, PRs, version control workflows, collaborative projects',
+    icon: (
+      <svg viewBox="0 0 24 24" width="28" height="28" fill="#F43F5E">
+        <path d="M21.6 10.9L13.1 2.4a2.4 2.4 0 0 0-3.4 0L7.3 4.8l3.3 3.3a2.9 2.9 0 0 1 3.7 3.7l3.2 3.2a2.9 2.9 0 1 1-1.7 1.7l-3-3a2.9 2.9 0 0 1-3.7-3.7L5.8 6.7 2.4 10.1a2.4 2.4 0 0 0 0 3.4l8.5 8.5a2.4 2.4 0 0 0 3.4 0l7.3-7.3a2.4 2.4 0 0 0 0-3.8z"/>
+      </svg>
+    ),
+  },
+  {
+    name: 'VS Code',
+    category: 'tools',
+    level: 'Expert',
+    dots: 5,
+    color: '#0284C7',
+    glowColor: 'rgba(2, 132, 199, 0.25)',
+    tag: 'IDE & Environment',
+    desc: 'Live Server, debugging suites, extension ecosystems, custom snippets',
+    icon: (
+      <svg viewBox="0 0 24 24" width="28" height="28" fill="#0284C7">
+        <path d="M17.6 2.3l-8.5 7.8-5.3-4-2 1 4.7 4.9-4.7 4.9 2 1 5.3-4 8.5 7.8c.8.7 2 .2 2-.9V3.2c0-1.1-1.2-1.6-2-.9zm-.6 14.5l-5.6-4.8 5.6-4.8v9.6z"/>
+      </svg>
+    ),
+  },
+  {
+    name: 'AI & Deep Learning',
+    category: 'tools',
+    level: 'Proficient',
+    dots: 4,
+    color: '#E879F9',
+    glowColor: 'rgba(232, 121, 249, 0.25)',
+    tag: 'Machine Learning',
+    desc: 'Transfer Learning, Ocular disease classification, ICCIS research',
+    icon: (
+      <svg viewBox="0 0 24 24" width="28" height="28" fill="#E879F9">
+        <path d="M12 2a2 2 0 0 1 2 2c0 .7-.4 1.4-1 1.7V8h2.3a2 2 0 0 1 1.7-1 2 2 0 0 1 2 2 2 2 0 0 1-1.7 1H17v4h.3a2 2 0 0 1 1.7-1 2 2 0 0 1 2 2 2 2 0 0 1-2 2 2 2 0 0 1-1.7-1H15v2.3a2 2 0 0 1 1 1.7 2 2 0 0 1-2 2 2 2 0 0 1-2-2c0-.7.4-1.4 1-1.7V18H9.7a2 2 0 0 1-1.7 1 2 2 0 0 1-2-2 2 2 0 0 1 1.7-1H9v-4H8.7a2 2 0 0 1-1.7 1 2 2 0 0 1-2-2 2 2 0 0 1 2-2 2 2 0 0 1 1.7 1H9V7.7a2 2 0 0 1-1-1.7 2 2 0 0 1 2-2 2 2 0 0 1 2 2c0 .7-.4 1.4-1 1.7V10h4V5.7a2 2 0 0 1-1-1.7 2 2 0 0 1 2-2zm-1 9v2h2v-2h-2z"/>
+      </svg>
+    ),
+  },
+];
+
+const marqueeSkills = [
+  '⚡ Python',
+  '☕ Java & JSP',
+  '✨ JavaScript',
+  '🌐 HTML5 & CSS3',
+  '🎨 Bootstrap',
+  '🗄️ MySQL',
+  '🐙 Git & GitHub',
+  '🧠 Deep Learning',
+  '💻 VS Code',
+  '🧩 Data Structures',
+  '🚀 Full-Stack Development',
 ];
 
 const projects = [
@@ -154,7 +322,12 @@ function App() {
   const [isDeleting, setIsDeleting] = useState(false);
   const [navbarScrolled, setNavbarScrolled] = useState(false);
   const [showTop, setShowTop] = useState(false);
-  const [skillWidths, setSkillWidths] = useState({});
+  const [activeCategory, setActiveCategory] = useState('all');
+
+  const filteredSkills = useMemo(() => {
+    if (activeCategory === 'all') return allSkills;
+    return allSkills.filter((skill) => skill.category === activeCategory);
+  }, [activeCategory]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -217,38 +390,6 @@ function App() {
 
     return () => revealObserver.disconnect();
   }, []);
-
-  useEffect(() => {
-    const skillObserver = new IntersectionObserver(
-      (entries, obs) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            const updatedWidths = {};
-            skillGroups.forEach((group) => {
-              group.skills.forEach((skill) => {
-                updatedWidths[skill.name] = skill.value;
-              });
-            });
-            setSkillWidths(updatedWidths);
-            obs.disconnect();
-          }
-        });
-      },
-      { threshold: 0.15 }
-    );
-
-    const target = document.querySelector('#skills');
-    if (target) skillObserver.observe(target);
-    return () => skillObserver.disconnect();
-  }, []);
-
-  const progressStyles = useMemo(
-    () =>
-      Object.fromEntries(
-        Object.entries(skillWidths).map(([name, width]) => [name, { width: `${width}%` }])
-      ),
-    [skillWidths]
-  );
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -375,26 +516,117 @@ function App() {
         </section>
 
         <section id="skills">
-          <h2 className="section-title">
-            My <span className="gradient-text">Skills</span>
-          </h2>
-          <div className="skills-grid">
-            {skillGroups.map((group) => (
-              <div className="glass-card reveal" key={group.title}>
-                <h3 style={{ marginBottom: '1rem' }}>{group.title}</h3>
-                {group.skills.map((skill) => (
-                  <div className="skill-item" key={skill.name}>
-                    <div className="skill-header">
-                      <span className="skill-name">{skill.name}</span>
-                      <span className="skill-percent">{skill.value}%</span>
-                    </div>
-                    <div className="skill-bar">
-                      <div className="skill-fill" style={progressStyles[skill.name] || { width: 0 }} />
-                    </div>
+          <div className="section-header">
+            <h2 className="section-title">
+              Technical <span className="gradient-text">Skills</span>
+            </h2>
+            <p className="section-subtitle">
+              Comprehensive toolkit for building performant full-stack applications, intelligent algorithms, and responsive interfaces
+            </p>
+          </div>
+
+          {/* Infinite Marquee Ticker */}
+          <div className="skills-marquee-wrap">
+            <div className="skills-marquee-track">
+              {marqueeSkills.concat(marqueeSkills).map((item, idx) => (
+                <span className="marquee-chip" key={idx}>
+                  {item}
+                </span>
+              ))}
+            </div>
+          </div>
+
+          {/* Category Filter Pills */}
+          <div className="skills-filter-container">
+            {skillCategories.map((cat) => {
+              const count = cat.id === 'all' ? allSkills.length : allSkills.filter((s) => s.category === cat.id).length;
+              const isActive = activeCategory === cat.id;
+              return (
+                <button
+                  key={cat.id}
+                  className={`skill-tab-pill ${isActive ? 'active' : ''}`}
+                  onClick={() => setActiveCategory(cat.id)}
+                  type="button"
+                >
+                  <span className="tab-label">{cat.label}</span>
+                  <span className="tab-badge">{count}</span>
+                </button>
+              );
+            })}
+          </div>
+
+          {/* Modern Bento Tech Cards Grid */}
+          <div className="modern-skills-grid">
+            {filteredSkills.map((skill) => (
+              <div
+                className="skill-card-modern glass-card reveal visible"
+                key={skill.name}
+                style={{
+                  '--skill-brand': skill.color,
+                  '--skill-glow': skill.glowColor,
+                }}
+              >
+                <div className="skill-card-glow-overlay" />
+                
+                <div className="skill-card-header">
+                  <div className="skill-icon-box" style={{ background: skill.glowColor, borderColor: skill.color }}>
+                    {skill.icon}
                   </div>
-                ))}
+                  <div className="skill-meta-right">
+                    <span className="skill-level-pill" style={{ color: skill.color, borderColor: skill.color }}>
+                      {skill.level}
+                    </span>
+                  </div>
+                </div>
+
+                <div className="skill-card-content">
+                  <h3 className="skill-title">{skill.name}</h3>
+                  <span className="skill-tag-pill">{skill.tag}</span>
+                  <p className="skill-desc">{skill.desc}</p>
+                </div>
+
+                <div className="skill-card-footer">
+                  <div className="skill-gauge-label">Mastery</div>
+                  <div className="skill-gauge-dots">
+                    {[1, 2, 3, 4, 5].map((dot) => (
+                      <span
+                        key={dot}
+                        className={`gauge-dot ${dot <= skill.dots ? 'active' : ''}`}
+                        style={{
+                          backgroundColor: dot <= skill.dots ? skill.color : 'rgba(255, 255, 255, 0.1)',
+                          boxShadow: dot <= skill.dots ? `0 0 10px ${skill.color}` : 'none',
+                        }}
+                      />
+                    ))}
+                  </div>
+                </div>
               </div>
             ))}
+          </div>
+
+          {/* Technical Strengths Summary Banner */}
+          <div className="skills-summary-grid reveal">
+            <div className="summary-card glass-card">
+              <div className="summary-icon">⚡</div>
+              <div className="summary-info">
+                <h4>Full-Stack Architecture</h4>
+                <p>Enterprise Java (JSP/Servlets), MySQL, and modern reactive frontends</p>
+              </div>
+            </div>
+            <div className="summary-card glass-card">
+              <div className="summary-icon">🧠</div>
+              <div className="summary-info">
+                <h4>AI & Machine Learning</h4>
+                <p>Research paper presented at ICCIS-3.0 in Deep Learning & Vision</p>
+              </div>
+            </div>
+            <div className="summary-card glass-card">
+              <div className="summary-icon">🎯</div>
+              <div className="summary-info">
+                <h4>DSA & Problem Solving</h4>
+                <p>25+ DSA algorithmic challenges solved with high efficiency</p>
+              </div>
+            </div>
           </div>
         </section>
 
