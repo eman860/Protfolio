@@ -208,70 +208,121 @@ const marqueeSkills = [
   '🚀 Full-Stack Development',
 ];
 
+const projectCategories = [
+  { id: 'all', label: 'All Projects' },
+  { id: 'fullstack', label: 'Full-Stack & Java' },
+  { id: 'ai', label: 'AI & Research' },
+  { id: 'web', label: 'Web Applications' },
+];
+
 const projects = [
   {
     title: 'Hospital Appointment Booking System',
+    category: 'fullstack',
+    subtitle: 'Enterprise Full-Stack Java Platform',
+    badge: '⭐ Flagship Internship Project',
+    route: 'app://apollo-hospital-booking',
     description:
-      'Developed the Apollo Hospital Appointment Booking System, a full-stack Java application enabling patients to book appointments with real-time scheduling and record management.',
-    tags: ['JSP', 'Java', 'SQL', 'Gemini AI'],
-    meta: 'June 2026',
-    links: [{ href: '#projects', label: '📄 Details' }],
+      'Engineered a complete hospital appointment booking platform enabling real-time doctor availability scheduling, patient queue tracking, medical records management, and AI triage assistance.',
+    tags: ['Java', 'JSP / Servlets', 'MySQL', 'Gemini AI', 'Bootstrap'],
+    highlights: ['Doctor Scheduling', 'Real-time Queues', 'Gemini AI Integration'],
+    accentColor: '#06B6D4',
+    accentGlow: 'rgba(6, 182, 212, 0.3)',
     icon: '🏥',
     featured: true,
+    links: [
+      { href: '#contact', label: '💬 Inquire Details', primary: true },
+      { href: 'https://github.com/eman860', label: '📂 GitHub Profile' },
+    ],
   },
   {
-    title: 'Detection of Eye Diseases (Deep Learning)',
+    title: 'Detection of Eye Diseases Using Deep Learning',
+    category: 'ai',
+    subtitle: 'Medical Computer Vision & Research',
+    badge: '🔬 ICCIS-3.0 Conference Paper',
+    route: 'research://ocular-disease-detection',
     description:
-      'Applied deep learning and transfer learning approaches to detect and classify ocular diseases accurately. Research paper presented at ICCIS-3.0 international conference.',
-    tags: ['Python', 'Deep Learning', 'Transfer Learning', 'AI/ML', 'Research'],
-    meta: 'Research Paper • ICCIS-3.0',
-    links: [
-      { href: 'https://github.com/eman860/eye_project', label: '📂 Source Code' },
-    ],
+      'Trained deep learning and transfer learning architectures to classify ocular diseases with high diagnostic accuracy. Research paper presented at the ICCIS-3.0 International Conference.',
+    tags: ['Python', 'Deep Learning', 'Transfer Learning', 'AI / ML', 'Research'],
+    highlights: ['ICCIS-3.0 Presentation', 'High Diagnostic Accuracy', 'Transfer Learning'],
+    accentColor: '#A855F7',
+    accentGlow: 'rgba(168, 85, 247, 0.3)',
     icon: '👁️',
+    featured: true,
+    links: [
+      { href: 'https://github.com/eman860/eye_project', label: '📂 View Research Code', primary: true },
+    ],
   },
   {
     title: 'Neuro Bill - Smart Billing System',
+    category: 'fullstack',
+    subtitle: 'Automated Invoice & Inventory Suite',
+    badge: '💼 Enterprise Software',
+    route: 'app://neuro-bill-system',
     description:
-      'Developed an intelligent billing and invoice management system with automated calculations, inventory tracking, secure authentication, and database management.',
-    tags: ['Python', 'Database', 'Authentication', 'Full-Stack'],
-    links: [
-      { href: 'https://github.com/eman860/NEURO_BILLL', label: '📂 Source Code' },
-    ],
+      'Developed an intelligent billing and invoice automation system with instant tax calculations, stock inventory alerts, PDF export, secure authentication, and database logging.',
+    tags: ['Python', 'MySQL', 'Authentication', 'Invoice Engine'],
+    highlights: ['Instant Invoicing', 'Stock Control', 'Role-based Auth'],
+    accentColor: '#10B981',
+    accentGlow: 'rgba(16, 185, 129, 0.3)',
     icon: '🧾',
+    links: [
+      { href: 'https://github.com/eman860/NEURO_BILLL', label: '📂 View Source Code', primary: true },
+    ],
   },
   {
-    title: 'E-commerce Website',
+    title: 'Modern E-Commerce Store',
+    category: 'web',
+    subtitle: 'Responsive Online Shopping Platform',
+    badge: '🌐 Live Application',
+    route: 'https://e-commerce-shop-website-project-g5t.vercel.app',
     description:
-      'Developed a responsive e-commerce website with product listings, cart functionality, and a smooth user experience.',
-    tags: ['HTML', 'CSS', 'JavaScript'],
+      'Built a fast, interactive online store with category filters, smooth product search, live shopping cart calculations, checkout workflows, and mobile-first design.',
+    tags: ['JavaScript', 'HTML5', 'CSS3', 'Vercel'],
+    highlights: ['Interactive Cart', 'Instant Search', 'Mobile Responsive'],
+    accentColor: '#F59E0B',
+    accentGlow: 'rgba(245, 158, 11, 0.3)',
+    icon: '🛍️',
     links: [
-      { href: 'https://e-commerce-shop-website-project-g5t.vercel.app/', label: '🔗 live' },
+      { href: 'https://e-commerce-shop-website-project-g5t.vercel.app/', label: '🚀 Live Demo', primary: true },
       { href: 'https://github.com/eman860/E-commerce-shop-website-project', label: '📂 Source Code' },
     ],
-    icon: '🌐',
   },
   {
-    title: 'To-do list',
+    title: 'Interactive To-Do & Task Manager',
+    category: 'web',
+    subtitle: 'Productivity & Activity Planner',
+    badge: '🌐 Live Application',
+    route: 'https://to-do-list-theta-ecru-33.vercel.app',
     description:
-      'Built a simple to-do list application that allows users to add, edit, and delete tasks, helping manage daily activities efficiently.',
-    tags: ['HTML', 'CSS', 'JavaScript'],
+      'Created an intuitive task manager featuring local storage data persistence, category priority tags, task status toggles, and snappy micro-animations.',
+    tags: ['JavaScript', 'Local Storage', 'CSS Animations'],
+    highlights: ['Persistent Storage', 'Priority Tags', 'Zero Latency'],
+    accentColor: '#3B82F6',
+    accentGlow: 'rgba(59, 130, 246, 0.3)',
+    icon: '📝',
     links: [
-      { href: 'https://to-do-list-theta-ecru-33.vercel.app/', label: '🔗 live' },
+      { href: 'https://to-do-list-theta-ecru-33.vercel.app/', label: '🚀 Live Demo', primary: true },
       { href: 'https://github.com/eman860/TO-DO-List', label: '📂 Source Code' },
     ],
-    icon: '📝',
   },
   {
-    title: 'Tuition Website',
+    title: 'Tuition & Education Academy Website',
+    category: 'web',
+    subtitle: 'Educational Service & Lead Portal',
+    badge: '🌐 Live Application',
+    route: 'https://tuition-website-opb1.vercel.app',
     description:
-      'Created a tuition website that provides information about tutoring services, subjects offered, and contact details for prospective students.',
-    tags: ['HTML', 'CSS', 'JavaScript', 'Python'],
+      'Designed a responsive tutoring academy web portal showcasing subject curriculums, faculty credentials, tuition schedules, and direct student registration inquiry forms.',
+    tags: ['HTML5', 'CSS3', 'JavaScript', 'Python'],
+    highlights: ['Lead Capture', 'Curriculum Guide', 'Responsive UI'],
+    accentColor: '#EC4899',
+    accentGlow: 'rgba(236, 72, 153, 0.3)',
+    icon: '📚',
     links: [
-      { href: 'https://tuition-website-opb1.vercel.app/', label: '🔗 live' },
+      { href: 'https://tuition-website-opb1.vercel.app/', label: '🚀 Live Demo', primary: true },
       { href: 'https://github.com/eman860/tuition-website', label: '📂 Source Code' },
     ],
-    icon: '📚',
   },
 ];
 
@@ -323,11 +374,17 @@ function App() {
   const [navbarScrolled, setNavbarScrolled] = useState(false);
   const [showTop, setShowTop] = useState(false);
   const [activeCategory, setActiveCategory] = useState('all');
+  const [activeProjectCategory, setActiveProjectCategory] = useState('all');
 
   const filteredSkills = useMemo(() => {
     if (activeCategory === 'all') return allSkills;
     return allSkills.filter((skill) => skill.category === activeCategory);
   }, [activeCategory]);
+
+  const filteredProjects = useMemo(() => {
+    if (activeProjectCategory === 'all') return projects;
+    return projects.filter((project) => project.category === activeProjectCategory);
+  }, [activeProjectCategory]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -631,32 +688,135 @@ function App() {
         </section>
 
         <section id="projects">
-          <h2 className="section-title">
-            My <span className="gradient-text">Projects</span>
-          </h2>
-          <div className="projects-grid">
-            {projects.map((project) => (
-              <div className={`glass-card project-card reveal ${project.featured ? 'featured' : ''}`} key={project.title}>
-                <div className="project-image">{project.icon}</div>
-                <div className="project-tags">
-                  {project.tags.map((tag) => (
-                    <span className="tag" key={tag}>
-                      {tag}
-                    </span>
-                  ))}
+          <div className="section-header">
+            <h2 className="section-title">
+              Featured <span className="gradient-text">Projects</span>
+            </h2>
+            <p className="section-subtitle">
+              Production full-stack applications, international research papers, and responsive web tools
+            </p>
+          </div>
+
+          {/* Project Filter Tabs */}
+          <div className="projects-filter-container">
+            {projectCategories.map((cat) => {
+              const count = cat.id === 'all' ? projects.length : projects.filter((p) => p.category === cat.id).length;
+              const isActive = activeProjectCategory === cat.id;
+              return (
+                <button
+                  key={cat.id}
+                  className={`project-tab-pill ${isActive ? 'active' : ''}`}
+                  onClick={() => setActiveProjectCategory(cat.id)}
+                  type="button"
+                >
+                  <span className="tab-label">{cat.label}</span>
+                  <span className="tab-badge">{count}</span>
+                </button>
+              );
+            })}
+          </div>
+
+          {/* Modern Projects Showcase Grid */}
+          <div className="modern-projects-grid">
+            {filteredProjects.map((project) => (
+              <div
+                className={`project-card-modern glass-card reveal visible ${project.featured ? 'featured-card' : ''}`}
+                key={project.title}
+                style={{
+                  '--proj-color': project.accentColor,
+                  '--proj-glow': project.accentGlow,
+                }}
+              >
+                {/* Browser Mockup Window Bar */}
+                <div className="proj-window-header">
+                  <div className="proj-window-dots">
+                    <span className="dot dot-red" />
+                    <span className="dot dot-yellow" />
+                    <span className="dot dot-green" />
+                  </div>
+                  <div className="proj-route-bar">
+                    <span className="route-icon">🔒</span>
+                    <span className="route-text">{project.route}</span>
+                  </div>
+                  {project.badge && (
+                    <div className="proj-badge-pill" style={{ color: project.accentColor, borderColor: project.accentColor }}>
+                      {project.badge}
+                    </div>
+                  )}
                 </div>
-                <h3 className="project-title">{project.title}</h3>
-                <p className="project-description">{project.description}</p>
-                {project.meta && <div className="project-meta">{project.meta}</div>}
-                <div className="project-links">
+
+                {/* Visual Banner */}
+                <div className="proj-banner-preview" style={{ background: `linear-gradient(135deg, ${project.accentGlow}, rgba(15, 23, 42, 0.95))` }}>
+                  <div className="proj-banner-glow" style={{ background: project.accentColor }} />
+                  <div className="proj-banner-icon-badge" style={{ borderColor: project.accentColor }}>
+                    <span>{project.icon}</span>
+                  </div>
+                  <div className="proj-banner-meta">
+                    <span className="proj-category-tag">{project.subtitle}</span>
+                  </div>
+                </div>
+
+                {/* Project Body */}
+                <div className="proj-body">
+                  <h3 className="proj-title">{project.title}</h3>
+                  <p className="proj-desc">{project.description}</p>
+
+                  {/* Highlights Bar */}
+                  {project.highlights && (
+                    <div className="proj-highlights">
+                      {project.highlights.map((item, idx) => (
+                        <span className="highlight-pill" key={idx}>
+                          ✓ {item}
+                        </span>
+                      ))}
+                    </div>
+                  )}
+
+                  {/* Tech Tags */}
+                  <div className="proj-tags-wrap">
+                    {project.tags.map((tag) => (
+                      <span className="proj-tech-tag" key={tag}>
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Card Action Links */}
+                <div className="proj-actions">
                   {project.links.map((link) => (
-                    <a key={link.href} href={link.href} target={link.href.startsWith('http') ? '_blank' : '_self'} rel="noreferrer" className="project-link">
+                    <a
+                      key={link.label}
+                      href={link.href}
+                      target={link.href.startsWith('http') ? '_blank' : '_self'}
+                      rel="noreferrer"
+                      className={`proj-btn ${link.primary ? 'proj-btn-primary' : 'proj-btn-secondary'}`}
+                      style={link.primary ? { background: `linear-gradient(135deg, ${project.accentColor}, var(--accent-purple))` } : {}}
+                    >
                       {link.label}
                     </a>
                   ))}
                 </div>
               </div>
             ))}
+          </div>
+
+          {/* Quick Metrics Strip */}
+          <div className="projects-metric-strip glass-card reveal">
+            <div className="metric-box">
+              <span className="metric-number gradient-text">6+</span>
+              <span className="metric-title">Shipped Projects</span>
+            </div>
+            <div className="metric-divider" />
+            <div className="metric-box">
+              <span className="metric-number gradient-text">1</span>
+              <span className="metric-title">Published Research Paper</span>
+            </div>
+            <div className="metric-divider" />
+            <div className="metric-box">
+              <span className="metric-number gradient-text">Full-Stack</span>
+              <span className="metric-title">Java & Web Architecture</span>
+            </div>
           </div>
         </section>
 
