@@ -3,7 +3,8 @@ import './App.css';
 import profileImage from './assets/photo2.jfif';
 
 const navLinks = [
-  { href: '#hero', label: 'About' },
+  { href: '#hero', label: 'Home' },
+  { href: '#about', label: 'About' },
   { href: '#skills', label: 'Skills' },
   { href: '#projects', label: 'Projects' },
   { href: '#education', label: 'Education' },
