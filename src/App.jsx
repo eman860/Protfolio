@@ -51,6 +51,16 @@ const projects = [
     featured: true,
   },
   {
+    title: 'Neuro Bill - Smart Billing System',
+    description:
+      'Developed an intelligent billing and invoice management system with automated calculations, inventory tracking, secure authentication, and database management.',
+    tags: ['Python', 'Database', 'Authentication', 'Full-Stack'],
+    links: [
+      { href: 'https://github.com/eman860/NEURO_BILLL', label: '📂 Source Code' },
+    ],
+    icon: '🧾',
+  },
+  {
     title: 'E-commerce Website',
     description:
       'Developed a responsive e-commerce website with product listings, cart functionality, and a smooth user experience.',
@@ -337,7 +347,9 @@ function App() {
                   <div className="stat-label">DSA Problems</div>
                 </div>
                 <div className="stat">
-                  <div className="stat-value">3</div>
+                  <div className="stat-value" data-suffix="+">
+                    5+
+                  </div>
                   <div className="stat-label">Key Projects</div>
                 </div>
                 <div className="stat">
