@@ -51,6 +51,17 @@ const projects = [
     featured: true,
   },
   {
+    title: 'Detection of Eye Diseases (Deep Learning)',
+    description:
+      'Applied deep learning and transfer learning approaches to detect and classify ocular diseases accurately. Research paper presented at ICCIS-3.0 international conference.',
+    tags: ['Python', 'Deep Learning', 'Transfer Learning', 'AI/ML', 'Research'],
+    meta: 'Research Paper • ICCIS-3.0',
+    links: [
+      { href: 'https://github.com/eman860/eye_project', label: '📂 Source Code' },
+    ],
+    icon: '👁️',
+  },
+  {
     title: 'Neuro Bill - Smart Billing System',
     description:
       'Developed an intelligent billing and invoice management system with automated calculations, inventory tracking, secure authentication, and database management.',
@@ -119,6 +130,7 @@ const achievements = [
     title: 'Detection of Eye Diseases Using Deep Learning and Transfer Learning Approaches',
     description:
       'Presented the research paper at the Third International Conference on Cyber and Information Security (ICCIS-3.0), organized by DDGDVC on 09.09.2025.',
+    link: 'https://github.com/eman860/eye_project',
   },
 ];
 
@@ -348,7 +360,7 @@ function App() {
                 </div>
                 <div className="stat">
                   <div className="stat-value" data-suffix="+">
-                    5+
+                    6+
                   </div>
                   <div className="stat-label">Key Projects</div>
                 </div>
@@ -471,6 +483,19 @@ function App() {
             <div className="glass-card reveal" key={item.title}>
               <h3>{item.title}</h3>
               <p>{item.description}</p>
+              {item.link && (
+                <div style={{ marginTop: '1rem' }}>
+                  <a
+                    href={item.link}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="project-link"
+                    style={{ display: 'inline-flex', alignItems: 'center', gap: '0.4rem' }}
+                  >
+                    📂 View Research Code (GitHub)
+                  </a>
+                </div>
+              )}
             </div>
           ))}
         </section>
