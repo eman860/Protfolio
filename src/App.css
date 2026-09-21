@@ -603,103 +603,125 @@ section {
   color: #0b0f19;
 }
 
-/* ── Skills Grid ── */
+/* ── Skills Grid (Image 2 Reference Style) ── */
 .skills-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
   gap: 1rem;
-  margin-bottom: 2rem;
+  max-width: 1140px;
+  margin: 0 auto 2.5rem;
+  padding: 0 0.5rem;
 }
 
 .skill-card {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   align-items: center;
-  gap: 1rem;
-  padding: 1rem 1.25rem;
-  transition: all 0.3s ease;
+  justify-content: center;
+  width: 106px;
+  height: 106px;
+  padding: 0.85rem 0.5rem;
+  background: rgba(15, 12, 28, 0.72);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  cursor: pointer;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  user-select: none;
+  transition: transform 0.25s cubic-bezier(0.2, 0, 0.2, 1),
+              border-color 0.25s ease,
+              box-shadow 0.25s ease,
+              background 0.25s ease;
+}
+
+.skill-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.18), transparent);
+  transition: background 0.25s ease;
+  pointer-events: none;
 }
 
 .skill-card:hover {
-  border-color: rgba(6, 182, 212, 0.3);
-  transform: translateY(-3px);
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25);
+  background: rgba(24, 20, 44, 0.9);
+  border-color: var(--skill-color, rgba(168, 85, 247, 0.5));
+  transform: translateY(-5px);
+  box-shadow: 0 12px 26px rgba(0, 0, 0, 0.5), 0 0 18px var(--skill-glow, rgba(168, 85, 247, 0.22));
 }
 
-/* Left: icon box */
+.skill-card:hover::before {
+  background: linear-gradient(90deg, transparent, var(--skill-color, rgba(168, 85, 247, 0.7)), transparent);
+}
+
 .skill-icon-wrap {
-  width: 44px;
-  height: 44px;
-  border-radius: 11px;
-  border: 1px solid;
+  width: 42px;
+  height: 42px;
   display: flex;
   align-items: center;
   justify-content: center;
-  flex-shrink: 0;
-  transition: transform 0.3s ease;
+  margin-bottom: 0.6rem;
+  transition: transform 0.25s ease;
+}
+
+.skill-icon-wrap svg {
+  width: 100%;
+  height: 100%;
+  max-width: 38px;
+  max-height: 38px;
+  object-fit: contain;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.35));
 }
 
 .skill-card:hover .skill-icon-wrap {
-  transform: scale(1.08) rotate(4deg);
-}
-
-/* Right: content column */
-.skill-right {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  gap: 0.45rem;
-  min-width: 0;
-}
-
-.skill-row-top {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  gap: 0.5rem;
+  transform: scale(1.12);
 }
 
 .skill-name {
-  font-size: 0.95rem;
-  font-weight: 700;
-  color: var(--text-primary);
-  margin: 0;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: #cbd5e1;
+  text-align: center;
   line-height: 1.2;
-}
-
-.skill-category-tag {
-  font-size: 0.68rem;
-  color: var(--text-muted);
-  background: var(--glass-bg);
-  border: 1px solid var(--border-color);
-  padding: 0.1rem 0.45rem;
-  border-radius: 5px;
-  width: fit-content;
-  margin-top: 0.15rem;
-}
-
-.skill-level-badge {
-  font-size: 0.65rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.07em;
   white-space: nowrap;
-  flex-shrink: 0;
+  letter-spacing: -0.01em;
+  transition: color 0.25s ease;
 }
 
-/* Progress bar */
-.skill-bar-track {
-  width: 100%;
-  height: 4px;
-  background: rgba(255, 255, 255, 0.07);
-  border-radius: 99px;
-  overflow: hidden;
+.skill-card:hover .skill-name {
+  color: #ffffff;
 }
 
-.skill-bar-fill {
-  height: 100%;
-  border-radius: 99px;
-  transition: width 0.6s ease;
+@media (max-width: 640px) {
+  .skills-grid {
+    gap: 0.65rem;
+  }
+  .skill-card {
+    width: 90px;
+    height: 90px;
+    padding: 0.65rem 0.35rem;
+    border-radius: 13px;
+  }
+  .skill-icon-wrap {
+    width: 32px;
+    height: 32px;
+    margin-bottom: 0.4rem;
+  }
+  .skill-icon-wrap svg {
+    max-width: 30px;
+    max-height: 30px;
+  }
+  .skill-name {
+    font-size: 0.72rem;
+  }
 }
 
 /* ── Projects Grid ── */

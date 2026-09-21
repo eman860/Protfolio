@@ -15,197 +15,308 @@ const roles = ['Full-Stack Developer', 'Java | JSP', 'Web Developer', 'Problem S
 
 const skillCategories = [
   { id: 'all', label: 'All Technologies' },
-  { id: 'languages', label: 'Programming' },
-  { id: 'web', label: 'Web & UI' },
-  { id: 'backend', label: 'Backend & DB' },
+  { id: 'frontend', label: 'Frontend' },
+  { id: 'backend', label: 'Backend' },
+  { id: 'database', label: 'Database & Cloud' },
   { id: 'tools', label: 'Tools & AI' },
 ];
 
 const allSkills = [
   {
-    name: 'Python',
-    category: 'languages',
-    level: 'Advanced',
-    dots: 5,
-    color: '#38BDF8',
-    glowColor: 'rgba(56, 189, 248, 0.25)',
-    tag: 'Core Language',
-    desc: 'Data Structures, AI/ML model development, Automation scripts',
+    name: 'HTML5',
+    category: 'frontend',
+    color: '#E44D26',
+    glowColor: 'rgba(228, 77, 38, 0.35)',
+    tag: 'Structure',
     icon: (
-      <svg viewBox="0 0 24 24" width="28" height="28" fill="none">
+      <svg viewBox="0 0 32 32" width="38" height="38">
+        <path fill="#E44D26" d="M5 2l2.3 24.8L16 30l8.7-3.2L27 2H5z"/>
+        <path fill="#F16529" d="M16 4.3v23.2l6.7-2.4 1.9-20.8H16z"/>
+        <path fill="#EBEBEB" d="M16 11.6h-5.6l.4 4.2H16v-4.2zm0 8.4l-.1.1-3.6-1-.2-2.7H8.5l.4 5.3 7.1 2v-3.7z"/>
+        <path fill="#FFFFFF" d="M16 11.6h5.6l-.5 5.8H16v-5.8zm0 8.4v3.7l7.1-2 .1-.9.7-7.6H16v2.6h2.7l-.3 3.2-2.4.9z"/>
+      </svg>
+    ),
+  },
+  {
+    name: 'CSS3',
+    category: 'frontend',
+    color: '#264DE4',
+    glowColor: 'rgba(38, 77, 228, 0.35)',
+    tag: 'Styling',
+    icon: (
+      <svg viewBox="0 0 32 32" width="38" height="38">
+        <path fill="#1572B6" d="M5 2l2.3 24.8L16 30l8.7-3.2L27 2H5z"/>
+        <path fill="#33A9DC" d="M16 4.3v23.2l6.7-2.4 1.9-20.8H16z"/>
+        <path fill="#EBEBEB" d="M16 11.6h-5.6l.4 4.2H16v-4.2zm-5.4 6.3h2.6l.2 2.1 2.6.7V24l-4.9-1.4-.5-4.7z"/>
+        <path fill="#FFFFFF" d="M16 11.6h5.6l-.4 4.2H16v-4.2zm0 6.3h5l-.5 5.5-4.5 1.3V21l2.4-.7.2-2.4H16v-2z"/>
+      </svg>
+    ),
+  },
+  {
+    name: 'JavaScript',
+    category: 'frontend',
+    color: '#F7DF1E',
+    glowColor: 'rgba(247, 223, 30, 0.35)',
+    tag: 'Scripting',
+    icon: (
+      <svg viewBox="0 0 32 32" width="38" height="38">
+        <rect width="32" height="32" rx="6" fill="#F7DF1E"/>
+        <path d="M10 22.5c.8 1.1 2 1.8 3.5 1.8 1.8 0 3.1-1.1 3.1-3.5v-8.8h-3.1v8.8c0 .8-.4 1.3-1.1 1.3-.6 0-1.1-.5-1.4-1.1L10 22.5zm10.2.4c1.1 1.1 2.8 1.9 4.9 1.9 3.5 0 5.7-1.9 5.7-4.8 0-2.7-1.7-3.8-4.1-4.8-1.6-.7-2.4-1.1-2.4-2.2 0-1 .8-1.7 2.1-1.7 1.1 0 2.1.5 2.9 1.3l1.8-2c-1.1-1.1-2.7-1.7-4.6-1.7-3.3 0-5.2 1.9-5.2 4.4 0 2.5 1.6 3.8 3.9 4.8 1.6.6 2.5 1.3 2.5 2.4 0 1.1-.9 1.9-2.4 1.9-1.4 0-2.5-.6-3.3-1.7l-1.8 2z" fill="#111111"/>
+      </svg>
+    ),
+  },
+  {
+    name: 'React',
+    category: 'frontend',
+    color: '#61DAFB',
+    glowColor: 'rgba(97, 218, 251, 0.35)',
+    tag: 'UI Library',
+    icon: (
+      <svg viewBox="-11.5 -10.23174 23 20.46348" width="38" height="38">
+        <circle cx="0" cy="0" r="2.05" fill="#61DAFB"/>
+        <g stroke="#61DAFB" strokeWidth="1" fill="none">
+          <ellipse rx="11" ry="4.2"/>
+          <ellipse rx="11" ry="4.2" transform="rotate(60)"/>
+          <ellipse rx="11" ry="4.2" transform="rotate(120)"/>
+        </g>
+      </svg>
+    ),
+  },
+  {
+    name: 'Java',
+    category: 'backend',
+    color: '#FB923C',
+    glowColor: 'rgba(251, 146, 60, 0.35)',
+    tag: 'Core Language',
+    icon: (
+      <svg viewBox="0 0 32 32" width="38" height="38">
+        <path fill="#5382A1" d="M11.2 25.4c4.3.4 8.7.2 12.8-.7 1.4-.3 2.8.6 3.1 2 .1.4.1.8 0 1.2-5.4 1.5-11.2 1.6-16.7.4-1.4-.3-2.3-1.7-2-3.1.2-.9.8-1.5 1.7-1.7l1.1 1.9z"/>
+        <path fill="#5382A1" d="M9.8 21.9c5.1.5 10.3.3 15.3-.6 1.2-.2 2.4.5 2.7 1.7.2.9-.2 1.8-1 2.2-5.7 1.2-11.6 1.3-17.4.3-1.1-.2-1.9-1.2-1.7-2.3.2-.8.8-1.4 1.6-1.5l.5.2z"/>
+        <path fill="#E76F00" d="M17.4 14.8c1.7 1.9.8 3.7.8 3.7s3.8-2 2-4.5c-1.8-2.5-3.3-3.7 4.5-7.7-6.5 1.9-8.8 5.7-7.3 8.5z"/>
+        <path fill="#5382A1" d="M22.5 28.9c-3.1.8-7.5.9-11.4.3-1.6-.3-.6-1.4.4-1.5 3.8-.4 7.8-.4 11.2.5.8.2.4.6-.2.7z"/>
+        <path fill="#E76F00" d="M14.9 3.1c-3.4 3.9 2 7.1-.5 11.4 4.4-4.2 1.8-8 .5-11.4z"/>
+        <path fill="#5382A1" d="M25.6 22.8c2.2-.9 3.4-2.8 3.1-4.7-.4-2.3-2.8-3.7-6.2-3.8.8.8 1.4 1.8 1.7 2.9 1.7.2 2.9.9 3.1 1.8.2 1.1-.9 2.2-2.7 2.7.3.4.7.8 1 1.1z"/>
+      </svg>
+    ),
+  },
+  {
+    name: 'Python',
+    category: 'backend',
+    color: '#38BDF8',
+    glowColor: 'rgba(56, 189, 248, 0.35)',
+    tag: 'Core Language',
+    icon: (
+      <svg viewBox="0 0 24 24" width="38" height="38" fill="none">
         <path d="M11.9 1.1c-4.3 0-4.1 1.9-4.1 1.9l.01 2h4.2v.6H5.8S2 5.2 2 9.6c0 4.4 3.3 4.2 3.3 4.2h2v-2.8s-.1-3.3 3.3-3.3h5.6s3.2.1 3.2-3.1c0-3.3-2.9-3.5-2.9-3.5h-2.6zm-2.4 2.1a.9.9 0 1 1 0 1.8.9.9 0 0 1 0-1.8z" fill="#38BDF8"/>
         <path d="M12.1 22.9c4.3 0 4.1-1.9 4.1-1.9l-.01-2h-4.2v-.6h6.2s3.8.4 3.8-4c0-4.4-3.3-4.2-3.3-4.2h-2v2.8s.1 3.3-3.3 3.3H7.8s-3.2-.1-3.2 3.1c0 3.3 2.9 3.5 2.9 3.5h2.6zm2.4-2.1a.9.9 0 1 1 0-1.8.9.9 0 0 1 0 1.8z" fill="#FACC15"/>
       </svg>
     ),
   },
   {
-    name: 'Java',
-    category: 'languages',
-    level: 'Proficient',
-    dots: 4,
-    color: '#FB923C',
-    glowColor: 'rgba(251, 146, 60, 0.25)',
-    tag: 'Core Language',
-    desc: 'Object-Oriented Programming, JSP, Servlets, Data Structures',
+    name: 'MySQL',
+    category: 'database',
+    color: '#00758F',
+    glowColor: 'rgba(0, 117, 143, 0.35)',
+    tag: 'RDBMS',
     icon: (
-      <svg viewBox="0 0 24 24" width="28" height="28" fill="#FB923C">
-        <path d="M8.8 19.4s-.8.5 1 .7c2.2.3 3.4.2 5.9-.2 0 0 .8.5 1.8.3-4.6 1.8-10.4.3-8.7-.8zm-.6-2.5s-1 .8 1 .9c2.6.2 4.9.3 8.3-.3 0 0 .6.4 1.3.4-5.3 1.5-12.7.5-10.6-1zm4-3.7c1.3 1.3-.3 2.6-.3 2.6s3.5-1.8 1.9-3.7c-1.6-1.8-3.1-2.7 4.2-5.7-5.9 1.4-8 4.2-5.8 6.8zm5.5 3.9c-2.4.6-5.8.7-8.8.2-1.3-.2-.5-1 .3-1.1 3-.3 6.1-.3 8.8.4.6.1.3.4-.3.5zM12.4 2C9.7 5.1 14 7.6 12 11c3.5-3.3 1.4-6.3.4-9z"/>
+      <svg viewBox="0 0 32 32" width="38" height="38" fill="#00758F">
+        <path d="M28.7 15.6c-.7-1.8-2.2-3.1-4-3.8.3-.9.4-1.9.2-2.8-.3-1.3-1.3-2.3-2.6-2.6-1.8-.4-3.5.5-4.4 1.9-1.5-.5-3.1-.4-4.5.3-2.4 1.2-3.8 3.7-3.6 6.3.1 1 .5 2 1.1 2.8-1.5 1.1-2.4 2.8-2.4 4.7 0 1.2.4 2.4 1.2 3.3-1.8.4-3.6.4-5.3-.1-1.1-.3-1.8.5-1.5 1.5.3.9 1.3 1.5 2.3 1.4 3.7.1 7.4-.9 10.5-2.8 1.9-1.2 3.3-3 4-5.1.8.2 1.6.3 2.5.1 1.8-.3 3.3-1.5 4-3.1 1.5-.4 2.7-1.6 2.5-3.1zm-8.8-5.3c.7-.6 1.8-.8 2.6-.4.5.3.8.8.8 1.4 0 .8-.5 1.6-1.3 1.8-.9.3-1.9 0-2.5-.7-.4-.6-.3-1.5.4-2.1zm-1.8 8.9c-.8 2.1-2.4 3.8-4.4 4.8-1.4.7-3 .9-4.5.7-.6-.1-.9-.6-.9-1.1 0-.6.4-1.1 1-1.2 1.8-.3 3.4-1.2 4.5-2.6.9-1.1 1.3-2.5 1.2-3.9-.1-1.8.8-3.5 2.3-4.5 1.1-.7 2.4-.8 3.6-.5.4.1.7.4.7.8 0 .4-.2.8-.6.9-1.2.4-2.2 1.3-2.6 2.5-.5 1.3-.4 2.8.2 4 .2.4.1.8-.2 1.1-.1.1-.2.2-.3.2z"/>
       </svg>
     ),
   },
   {
-    name: 'JavaScript',
-    category: 'languages',
-    level: 'Advanced',
-    dots: 4,
-    color: '#FACC15',
-    glowColor: 'rgba(250, 204, 21, 0.25)',
-    tag: 'Web & Scripts',
-    desc: 'Modern ES6+, Async/Await, DOM manipulation, Dynamic APIs',
+    name: 'MongoDB',
+    category: 'database',
+    color: '#47A248',
+    glowColor: 'rgba(71, 162, 72, 0.35)',
+    tag: 'NoSQL Database',
     icon: (
-      <svg viewBox="0 0 24 24" width="28" height="28" fill="#FACC15">
-        <path d="M3 3h18v18H3V3zm13.7 13.9c-.8 1.4-2 2.2-3.8 2.2-2.8 0-4.3-1.7-4.3-4.1 0-2.6 1.7-4.2 4.4-4.2 1.4 0 2.5.5 3.2 1.3l-1.3 1.3c-.5-.6-1.1-.9-1.9-.9-1.4 0-2.3.9-2.3 2.5 0 1.5.8 2.4 2.2 2.4.9 0 1.5-.4 1.9-.9v-1.1h-2v-1.7h3.6v3.5zM8.5 15.6c0 1.9-.9 2.8-2.6 2.8-.8 0-1.6-.3-2.1-.8l1-1.3c.4.3.7.5 1.1.5.6 0 1-.4 1-1.2V11H8.5v4.6z"/>
+      <svg viewBox="0 0 24 24" width="38" height="38">
+        <path fill="#47A248" d="M12 1.5s-.2.2-.4.4C10.2 3.6 5 8.9 5 14.5c0 4.1 2.7 7.5 6.6 8.3.3.1.5-.1.5-.4V1.5z"/>
+        <path fill="#499D4A" d="M12 1.5v20.9c.1 0 .2 0 .4-.1 3.9-.8 6.6-4.2 6.6-8.3 0-5.6-5.2-10.9-6.6-12.1-.2-.2-.4-.4-.4-.4z"/>
+        <path fill="#FFFFFF" opacity="0.3" d="M12 2.5v19.5c.1-.1.2-.1.3-.2 3.5-.9 5.7-4.1 5.7-7.8 0-4.8-4.5-9.6-6-11.5z"/>
+        <path fill="#3FA037" d="M11.6 22.8c-.3.4-.6.8-.7 1.2h2.2c-.1-.4-.4-.8-.7-1.2h-.8z"/>
       </svg>
     ),
   },
   {
-    name: 'HTML5',
-    category: 'web',
-    level: 'Advanced',
-    dots: 5,
-    color: '#F97316',
-    glowColor: 'rgba(249, 115, 22, 0.25)',
-    tag: 'Semantic Markup',
-    desc: 'Clean markup hierarchy, SEO best practices, Accessibility standards',
-    icon: (
-      <svg viewBox="0 0 24 24" width="28" height="28" fill="none">
-        <path d="M4.2 2.5l1.6 17.5 6.2 1.7 6.2-1.7 1.6-17.5H4.2z" fill="#E34F26"/>
-        <path d="M12 4.1v16l4.9-1.4 1.3-14.6H12z" fill="#EF652A"/>
-        <path d="M12 7.7H8l.3 3.3h3.7v-3.3zm0 6.6H9.7l-.2-2.2H8l.4 4.5 3.6 1v-3.3zm0-6.6h4l-.4 4.5H12v-2.2h1.6l.2-2.3H12v-0zm0 6.6v3.3l3.6-1 .4-4.5h-4z" fill="#fff"/>
-      </svg>
-    ),
-  },
-  {
-    name: 'CSS3',
-    category: 'web',
-    level: 'Advanced',
-    dots: 4,
-    color: '#38BDF8',
-    glowColor: 'rgba(56, 189, 248, 0.25)',
-    tag: 'Styling & Layouts',
-    desc: 'Flexbox, CSS Grid layouts, Glassmorphism, Responsive animations',
-    icon: (
-      <svg viewBox="0 0 24 24" width="28" height="28" fill="none">
-        <path d="M4.2 2.5l1.6 17.5 6.2 1.7 6.2-1.7 1.6-17.5H4.2z" fill="#1572B6"/>
-        <path d="M12 4.1v16l4.9-1.4 1.3-14.6H12z" fill="#33A9DC"/>
-        <path d="M12 7.7H8l.3 3.3h3.7v-3.3zm0 6.6H9.7l-.2-2.2H8l.4 4.5 3.6 1v-3.3zm0-6.6h4l-.4 4.5H12v-2.2h1.6l.2-2.3H12v-0zm0 6.6v3.3l3.6-1 .4-4.5h-4z" fill="#fff"/>
-      </svg>
-    ),
-  },
-  {
-    name: 'Bootstrap',
-    category: 'web',
-    level: 'Proficient',
-    dots: 4,
-    color: '#C084FC',
-    glowColor: 'rgba(192, 132, 252, 0.25)',
-    tag: 'UI Framework',
-    desc: 'Rapid UI prototyping, Grid systems, Custom interactive components',
-    icon: (
-      <svg viewBox="0 0 24 24" width="28" height="28" fill="#A855F7">
-        <path d="M5.5 2h13a3.5 3.5 0 0 1 3.5 3.5v13a3.5 3.5 0 0 1-3.5 3.5h-13A3.5 3.5 0 0 1 2 18.5v-13A3.5 3.5 0 0 1 5.5 2zm5 4.5a.5.5 0 0 0-.5.5v10a.5.5 0 0 0 .5.5h4c2.2 0 3.5-1.1 3.5-2.7 0-1.1-.7-2-1.7-2.3 1-.3 1.5-1.2 1.5-2.1 0-1.6-1.3-2.9-3.3-2.9h-4zm2 2.2h1.8c.8 0 1.4.5 1.4 1.3 0 .7-.6 1.3-1.4 1.3h-1.8V8.7zm0 4.4h2.1c.9 0 1.6.6 1.6 1.4s-.7 1.4-1.6 1.4h-2.1v-2.8z"/>
-      </svg>
-    ),
-  },
-  {
-    name: 'JSP & Servlets',
+    name: 'Node.js',
     category: 'backend',
-    level: 'Proficient',
-    dots: 4,
-    color: '#22D3EE',
-    glowColor: 'rgba(34, 211, 238, 0.25)',
-    tag: 'Enterprise Java',
-    desc: 'MVC architecture, Session authentication, Java backend endpoints',
+    color: '#68BD45',
+    glowColor: 'rgba(104, 189, 69, 0.35)',
+    tag: 'Runtime',
     icon: (
-      <svg viewBox="0 0 24 24" width="28" height="28" fill="#22D3EE">
-        <path d="M4 4h16a2 2 0 0 1 2 2v4a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2zm0 8h16a2 2 0 0 1 2 2v4a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2v-4a2 2 0 0 1 2-2zm2-5a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm0 8a1 1 0 1 0 0 2 1 1 0 0 0 0-2z"/>
+      <svg viewBox="0 0 32 32" width="38" height="38">
+        <path fill="#83CD29" d="M16 2.8l11.5 6.6-11.5 6.6-11.5-6.6L16 2.8z"/>
+        <path fill="#417E38" d="M27.5 9.4v13.2L16 29.2V16l11.5-6.6z"/>
+        <path fill="#68BD45" d="M4.5 9.4L16 16v13.2L4.5 22.6V9.4z"/>
       </svg>
     ),
   },
   {
-    name: 'SQL / MySQL',
+    name: 'PHP',
     category: 'backend',
-    level: 'Proficient',
-    dots: 4,
-    color: '#38BDF8',
-    glowColor: 'rgba(56, 189, 248, 0.25)',
-    tag: 'Database Management',
-    desc: 'Schema design, complex join queries, constraints, data integrity',
+    color: '#777BB4',
+    glowColor: 'rgba(119, 123, 180, 0.35)',
+    tag: 'Server Scripting',
     icon: (
-      <svg viewBox="0 0 24 24" width="28" height="28" fill="#38BDF8">
-        <path d="M12 2C6.5 2 2 3.3 2 5v14c0 1.7 4.5 3 10 3s10-1.3 10-3V5c0-1.7-4.5-3-10-3zm0 2c4.4 0 8 1 8 1.5S16.4 7 12 7 4 6 4 5.5 7.6 4 12 4zm0 6c4.4 0 8-1 8-1.5V12c0 .6-3.6 1.5-8 1.5S4 12.6 4 12v-1.5c0 .5 3.6 1.5 8 1.5zm0 6c4.4 0 8-1 8-1.5V18c0 .6-3.6 1.5-8 1.5S4 18.6 4 18v-1.5c0 .5 3.6 1.5 8 1.5z"/>
+      <svg viewBox="0 0 48 32" width="44" height="30">
+        <ellipse cx="24" cy="16" rx="23" ry="14" fill="#777BB4"/>
+        <path fill="#FFFFFF" d="M11.5 10h5.2c2.5 0 4.1 1.2 4.1 3.2 0 2.2-1.8 3.5-4.3 3.5h-2.1l-1.3 5.3h-2.9l2.3-12zm4.3 4.6c1 0 1.7-.5 1.7-1.4 0-.8-.5-1.2-1.5-1.2h-2l-.6 2.6h2.4zM24.8 10h2.9l-1.2 5.1h4.2l1.2-5.1h2.9l-2.8 12h-2.9l1.3-4.8h-4.2l-1.3 4.8h-2.9l2.8-12zM36.5 10h5.2c2.5 0 4.1 1.2 4.1 3.2 0 2.2-1.8 3.5-4.3 3.5h-2.1l-1.3 5.3h-2.9l2.3-12zm4.3 4.6c1 0 1.7-.5 1.7-1.4 0-.8-.5-1.2-1.5-1.2h-2l-.6 2.6h2.4z"/>
       </svg>
     ),
   },
   {
     name: 'Git & GitHub',
     category: 'tools',
-    level: 'Advanced',
-    dots: 4,
-    color: '#F43F5E',
-    glowColor: 'rgba(244, 63, 94, 0.25)',
+    color: '#F05032',
+    glowColor: 'rgba(240, 80, 50, 0.35)',
     tag: 'Version Control',
-    desc: 'Branching, PRs, version control workflows, collaborative projects',
     icon: (
-      <svg viewBox="0 0 24 24" width="28" height="28" fill="#F43F5E">
-        <path d="M21.6 10.9L13.1 2.4a2.4 2.4 0 0 0-3.4 0L7.3 4.8l3.3 3.3a2.9 2.9 0 0 1 3.7 3.7l3.2 3.2a2.9 2.9 0 1 1-1.7 1.7l-3-3a2.9 2.9 0 0 1-3.7-3.7L5.8 6.7 2.4 10.1a2.4 2.4 0 0 0 0 3.4l8.5 8.5a2.4 2.4 0 0 0 3.4 0l7.3-7.3a2.4 2.4 0 0 0 0-3.8z"/>
+      <svg viewBox="0 0 24 24" width="38" height="38" fill="#FFFFFF">
+        <path fillRule="evenodd" clipRule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/>
       </svg>
     ),
   },
   {
     name: 'VS Code',
     category: 'tools',
-    level: 'Expert',
-    dots: 5,
-    color: '#0284C7',
-    glowColor: 'rgba(2, 132, 199, 0.25)',
-    tag: 'IDE & Environment',
-    desc: 'Live Server, debugging suites, extension ecosystems, custom snippets',
+    color: '#007ACC',
+    glowColor: 'rgba(0, 122, 204, 0.35)',
+    tag: 'IDE',
     icon: (
-      <svg viewBox="0 0 24 24" width="28" height="28" fill="#0284C7">
-        <path d="M17.6 2.3l-8.5 7.8-5.3-4-2 1 4.7 4.9-4.7 4.9 2 1 5.3-4 8.5 7.8c.8.7 2 .2 2-.9V3.2c0-1.1-1.2-1.6-2-.9zm-.6 14.5l-5.6-4.8 5.6-4.8v9.6z"/>
+      <svg viewBox="0 0 24 24" width="38" height="38" fill="none">
+        <path d="M17.6 2.3l-8.5 7.8-5.3-4-2 1 4.7 4.9-4.7 4.9 2 1 5.3-4 8.5 7.8c.8.7 2 .2 2-.9V3.2c0-1.1-1.2-1.6-2-.9z" fill="#007ACC"/>
+        <path d="M17 7.2L11.4 12 17 16.8V7.2z" fill="#1F9CF0"/>
+      </svg>
+    ),
+  },
+  {
+    name: 'Supabase',
+    category: 'database',
+    color: '#3ECF8E',
+    glowColor: 'rgba(62, 207, 142, 0.35)',
+    tag: 'Backend & DB',
+    icon: (
+      <svg viewBox="0 0 109 113" width="38" height="38" fill="none">
+        <path d="M65.4 110.8c-2.3 3-7.2 1.4-7.3-2.5l-1.3-44.6h42.1c4.8 0 7.4 5.6 4.3 9.3L65.4 110.8z" fill="#3ECF8E"/>
+        <path d="M43.7 2.1c2.3-3 7.2-1.4 7.3 2.5l1.3 44.6H10.2c-4.8 0-7.4-5.6-4.3-9.3L43.7 2.1z" fill="#3ECF8E"/>
+      </svg>
+    ),
+  },
+  {
+    name: 'Vercel',
+    category: 'tools',
+    color: '#FFFFFF',
+    glowColor: 'rgba(255, 255, 255, 0.25)',
+    tag: 'Deployment',
+    icon: (
+      <svg viewBox="0 0 24 24" width="38" height="38" fill="#FFFFFF">
+        <path d="M12 2L24 22H0L12 2z"/>
+      </svg>
+    ),
+  },
+  {
+    name: 'PostgreSQL',
+    category: 'database',
+    color: '#336791',
+    glowColor: 'rgba(51, 103, 145, 0.35)',
+    tag: 'SQL Database',
+    icon: (
+      <svg viewBox="0 0 64 64" width="38" height="38">
+        <path fill="#336791" d="M32 2C15.4 2 2 15.4 2 32c0 8.2 3.3 15.6 8.7 21l3.5-3.5C9.4 44.9 6.5 38.8 6.5 32 6.5 17.9 17.9 6.5 32 6.5S57.5 17.9 57.5 32c0 6.8-2.9 12.9-7.7 17.5l3.5 3.5C58.7 47.6 62 40.2 62 32 62 15.4 48.6 2 32 2z"/>
+        <path fill="#336791" d="M38.5 16.5c-4.5 0-8.8 1.8-11.8 4.7-2.3-1.6-5.1-2.5-8.2-2.5-6.8 0-12.4 4.8-13.8 11.2 1.4 1 3 1.8 4.7 2.3.6-4.5 4.5-8 9.1-8 2.2 0 4.2.8 5.7 2.1l2.5 2.1-1.3 3c-.8 1.8-1.2 3.7-1.2 5.7v13.4h5.5V37.1c0-1.5.3-3 .9-4.4l1.1-2.5 2.4 1.4c1.3.8 2.8 1.2 4.4 1.2 4.7 0 8.5-3.8 8.5-8.5s-3.8-8.5-8.5-8.5zm0 11.5c-1.7 0-3-1.3-3-3s1.3-3 3-3 3 1.3 3 3-1.3 3-3 3z"/>
+      </svg>
+    ),
+  },
+  {
+    name: 'Bootstrap',
+    category: 'frontend',
+    color: '#7952B3',
+    glowColor: 'rgba(121, 82, 179, 0.35)',
+    tag: 'CSS Framework',
+    icon: (
+      <svg viewBox="0 0 32 32" width="38" height="38">
+        <rect width="32" height="32" rx="7" fill="#7952B3"/>
+        <path fill="#FFFFFF" d="M12.5 7h5c2.4 0 4 1.2 4 3 0 1.2-.7 2.2-1.8 2.6 1.4.4 2.3 1.6 2.3 3.1 0 2.2-1.8 3.3-4.5 3.3h-5V7zm3 5h1.7c.9 0 1.6-.5 1.6-1.3 0-.7-.7-1.2-1.6-1.2h-1.7v2.5zm0 4.5v2.7h2c1 0 1.8-.5 1.8-1.4 0-.8-.8-1.3-1.8-1.3h-2z"/>
+      </svg>
+    ),
+  },
+  {
+    name: 'JSP & Servlets',
+    category: 'backend',
+    color: '#22D3EE',
+    glowColor: 'rgba(34, 211, 238, 0.35)',
+    tag: 'Enterprise Java',
+    icon: (
+      <svg viewBox="0 0 24 24" width="38" height="38" fill="#22D3EE">
+        <path d="M4 4h16a2 2 0 0 1 2 2v4a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2zm0 8h16a2 2 0 0 1 2 2v4a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2v-4a2 2 0 0 1 2-2zm2-5a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm0 8a1 1 0 1 0 0 2 1 1 0 0 0 0-2z"/>
       </svg>
     ),
   },
   {
     name: 'AI & Deep Learning',
     category: 'tools',
-    level: 'Proficient',
-    dots: 4,
     color: '#E879F9',
-    glowColor: 'rgba(232, 121, 249, 0.25)',
+    glowColor: 'rgba(232, 121, 249, 0.35)',
     tag: 'Machine Learning',
-    desc: 'Transfer Learning, Ocular disease classification, ICCIS research',
     icon: (
-      <svg viewBox="0 0 24 24" width="28" height="28" fill="#E879F9">
+      <svg viewBox="0 0 24 24" width="38" height="38" fill="#E879F9">
         <path d="M12 2a2 2 0 0 1 2 2c0 .7-.4 1.4-1 1.7V8h2.3a2 2 0 0 1 1.7-1 2 2 0 0 1 2 2 2 2 0 0 1-1.7 1H17v4h.3a2 2 0 0 1 1.7-1 2 2 0 0 1 2 2 2 2 0 0 1-2 2 2 2 0 0 1-1.7-1H15v2.3a2 2 0 0 1 1 1.7 2 2 0 0 1-2 2 2 2 0 0 1-2-2c0-.7.4-1.4 1-1.7V18H9.7a2 2 0 0 1-1.7 1 2 2 0 0 1-2-2 2 2 0 0 1 1.7-1H9v-4H8.7a2 2 0 0 1-1.7 1 2 2 0 0 1-2-2 2 2 0 0 1 2-2 2 2 0 0 1 1.7 1H9V7.7a2 2 0 0 1-1-1.7 2 2 0 0 1 2-2 2 2 0 0 1 2 2c0 .7-.4 1.4-1 1.7V10h4V5.7a2 2 0 0 1-1-1.7 2 2 0 0 1 2-2zm-1 9v2h2v-2h-2z"/>
+      </svg>
+    ),
+  },
+  {
+    name: 'C / C++',
+    category: 'backend',
+    color: '#00599C',
+    glowColor: 'rgba(0, 89, 156, 0.35)',
+    tag: 'Systems & DSA',
+    icon: (
+      <svg viewBox="0 0 32 32" width="38" height="38">
+        <path fill="#00599C" d="M16 2.5l11.5 6.6v13.8L16 29.2 4.5 22.9V9.1L16 2.5z"/>
+        <path fill="#004482" d="M16 2.5l11.5 6.6v13.8L16 16.5V2.5z" opacity="0.3"/>
+        <path fill="#FFFFFF" d="M16 10.5c-3.1 0-5 2.2-5 5.5s1.9 5.5 5 5.5c1.8 0 3.2-.8 4-1.9l-1.8-1.3c-.6.7-1.3 1.1-2.2 1.1-1.7 0-2.8-1.3-2.8-3.4s1.1-3.4 2.8-3.4c.9 0 1.6.4 2.2 1.1l1.8-1.3c-.8-1.1-2.2-1.8-4-1.8zm5.5 4h1v1.5h1.5v1H22.5v1.5h-1V17H20v-1h1.5v-1.5zm4.5 0h1v1.5h1.5v1H27v1.5h-1V17h-1.5v-1H26v-1.5z"/>
+      </svg>
+    ),
+  },
+  {
+    name: 'DSA',
+    category: 'tools',
+    color: '#38BDF8',
+    glowColor: 'rgba(56, 189, 248, 0.35)',
+    tag: 'Algorithms',
+    icon: (
+      <svg viewBox="0 0 24 24" width="38" height="38" fill="none" stroke="#38BDF8" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <rect x="2" y="2" width="8" height="8" rx="2"/>
+        <rect x="14" y="2" width="8" height="8" rx="2"/>
+        <rect x="8" y="14" width="8" height="8" rx="2"/>
+        <line x1="6" y1="10" x2="6" y2="12"/>
+        <line x1="18" y1="10" x2="18" y2="12"/>
+        <line x1="6" y1="12" x2="18" y2="12"/>
+        <line x1="12" y1="12" x2="12" y2="14"/>
       </svg>
     ),
   },
 ];
 
 const marqueeSkills = [
-  '⚡ Python',
+  '⚡ React',
   '☕ Java & JSP',
+  '🐍 Python',
   '✨ JavaScript',
   '🌐 HTML5 & CSS3',
-  '🎨 Bootstrap',
-  '🗄️ MySQL',
-  '🐙 Git & GitHub',
-  '🧠 Deep Learning',
-  '💻 VS Code',
+  '🟢 Node.js',
+  '🍃 MongoDB',
+  '🗄️ MySQL & PostgreSQL',
+  '⚙️ C / C++',
   '🧩 Data Structures',
-  '🚀 Full-Stack Development',
+  '⚡ Supabase',
+  '▲ Vercel',
+  '🎨 Bootstrap',
+  '🐙 Git & GitHub',
+  '🧠 AI & Deep Learning',
+  '💻 VS Code',
 ];
 
 const projectCategories = [
@@ -616,36 +727,15 @@ function App() {
           <div className="skills-grid">
             {filteredSkills.map((skill) => (
               <div
-                className="skill-card glass-card reveal visible"
+                className="skill-card reveal visible"
                 key={skill.name}
+                title={`${skill.name}${skill.tag ? ` • ${skill.tag}` : ''}`}
                 style={{ '--skill-color': skill.color, '--skill-glow': skill.glowColor }}
               >
-                {/* Left: icon */}
-                <div className="skill-icon-wrap" style={{ background: skill.glowColor, borderColor: `${skill.color}40` }}>
+                <div className="skill-icon-wrap">
                   {skill.icon}
                 </div>
-
-                {/* Right: info */}
-                <div className="skill-right">
-                  <div className="skill-row-top">
-                    <div>
-                      <h3 className="skill-name">{skill.name}</h3>
-                      <span className="skill-category-tag">{skill.tag}</span>
-                    </div>
-                    <span className="skill-level-badge" style={{ color: skill.color }}>
-                      {skill.level}
-                    </span>
-                  </div>
-                  <div className="skill-bar-track">
-                    <div
-                      className="skill-bar-fill"
-                      style={{
-                        width: `${(skill.dots / 5) * 100}%`,
-                        background: `linear-gradient(90deg, ${skill.color}, var(--accent-purple))`,
-                      }}
-                    />
-                  </div>
-                </div>
+                <span className="skill-name">{skill.name}</span>
               </div>
             ))}
           </div>
