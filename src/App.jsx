@@ -1,12 +1,14 @@
 import { useEffect, useMemo, useState } from 'react';
 import './App.css';
 import profileImage from './assets/photo2.jfif';
+import ResumeModal from './ResumeModal';
 
 const navLinks = [
   { href: '#hero', label: 'Home' },
   { href: '#about', label: 'About' },
   { href: '#skills', label: 'Skills' },
   { href: '#projects', label: 'Projects' },
+  { href: '#experience', label: 'Experience' },
   { href: '#education', label: 'Education' },
   { href: '#contact', label: 'Contact' },
 ];
@@ -439,20 +441,20 @@ const projects = [
 
 const timelineItems = [
   {
-    year: '2023 - 27 - Present',
-    title: "Bachelor's in Computer Science",
-    place: 'AMCET',
+    year: '2023 - 2027 (Pursuing)',
+    title: 'B.E. Computer Science and Engineering',
+    place: 'Annai Mira College Of Engineering And Tech',
     description:
-      'Currently pursuing my degree with focus on software engineering, data structures, and web development.',
-    extra: 'CGPA-8.50',
+      'Pursuing Bachelor of Engineering in Computer Science with a strong academic foundation in software engineering, OOP, and data structures.',
+    extra: 'CGPA: 8.20 (Till 5th Sem)',
   },
   {
-    year: '2021 - 23',
-    title: 'Higher Secondary Education',
-    place: 'G V C',
+    year: '2021 - 2023',
+    title: 'Higher Secondary Certificate (HSC)',
+    place: 'GVC HR SEC SCHOOL',
     description:
-      'Completed Higher Secondary Education in the Biology group, with a strong foundation in biology, physics, chemistry, and mathematics.',
-    extra: '70%',
+      'Completed Higher Secondary Education in the Biology group with a solid grasp of science and mathematics.',
+    extra: 'Score: 70%',
   },
 ];
 
@@ -472,13 +474,15 @@ const certifications = [
 ];
 
 const contacts = [
-  { href: 'https://www.linkedin.com/in/imman-10im', label: '💼', title: 'LinkedIn' },
-  { href: 'https://github.com/eman860', label: '🐙', title: 'GitHub' },
-  { href: 'https://mail.google.com/mail/u/0/?hl=en#inbox', label: '📧', title: 'Email' },
+  { href: 'mailto:imman6230@gmail.com', label: '📧', title: 'Email', value: 'imman6230@gmail.com' },
+  { href: 'tel:+918610072497', label: '📞', title: 'Phone', value: '+91 8610072497' },
+  { href: 'https://www.linkedin.com/in/imman-10im', label: '💼', title: 'LinkedIn', value: 'LinkedIn' },
+  { href: 'https://github.com/eman860', label: '🐙', title: 'GitHub', value: 'GitHub' },
 ];
 
 function App() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [resumeOpen, setResumeOpen] = useState(false);
   const [typingText, setTypingText] = useState('');
   const [currentRoleIndex, setCurrentRoleIndex] = useState(0);
   const [isDeleting, setIsDeleting] = useState(false);
@@ -594,27 +598,74 @@ function App() {
         <div className="grid-pattern" />
       </div>
 
-      <nav id="navbar" className={navbarScrolled ? 'scrolled' : ''}>
-        <div className="nav-container">
-          <a href="#hero" className="logo">
-            Imman
+      <header className={`header-wrapper ${navbarScrolled ? 'scrolled' : ''}`}>
+        <nav id="navbar" className="nav-island">
+          <a href="#hero" className="brand-logo" onClick={() => setMenuOpen(false)}>
+            <div className="brand-badge">
+              <span>&lt;/&gt;</span>
+            </div>
+            <div className="brand-text-wrap">
+              <span className="brand-name">
+                Imman<span className="brand-accent">.dev</span>
+              </span>
+              <span className="brand-status">
+                <span className="status-dot-pulse" />
+                Available for hire
+              </span>
+            </div>
           </a>
+
           <ul className={`nav-links ${menuOpen ? 'active' : ''}`} id="navLinks">
             {navLinks.map((link) => (
               <li key={link.href}>
-                <a href={link.href} onClick={() => setMenuOpen(false)}>
+                <a href={link.href} onClick={() => setMenuOpen(false)} className="nav-item-link">
                   {link.label}
                 </a>
               </li>
             ))}
           </ul>
-          <button className="mobile-menu-btn" id="mobileMenuBtn" onClick={() => setMenuOpen((open) => !open)}>
-            <span />
-            <span />
-            <span />
-          </button>
-        </div>
-      </nav>
+
+          <div className="nav-actions">
+            <a
+              href="https://github.com/eman860"
+              target="_blank"
+              rel="noreferrer"
+              className="nav-icon-btn"
+              title="GitHub Profile"
+              aria-label="GitHub Profile"
+            >
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+                <path fillRule="evenodd" clipRule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" />
+              </svg>
+            </a>
+
+            <a
+              href="https://www.linkedin.com/in/imman-10im"
+              target="_blank"
+              rel="noreferrer"
+              className="nav-linkedin-btn"
+              title="LinkedIn Profile"
+              aria-label="LinkedIn Profile"
+            >
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+                <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z" />
+              </svg>
+              <span className="btn-text">LinkedIn</span>
+            </a>
+
+            <button
+              className={`mobile-menu-toggle ${menuOpen ? 'active' : ''}`}
+              id="mobileMenuBtn"
+              onClick={() => setMenuOpen((open) => !open)}
+              aria-label="Toggle Navigation Menu"
+            >
+              <span />
+              <span />
+              <span />
+            </button>
+          </div>
+        </nav>
+      </header>
 
       <main>
         <section id="hero">
@@ -678,6 +729,17 @@ function App() {
                   <div className="stat-value">B.E.</div>
                   <div className="stat-label">CSE (Pursuing)</div>
                 </div>
+              </div>
+
+              <div className="about-actions">
+                <button
+                  type="button"
+                  className="btn btn-outline"
+                  onClick={() => setResumeOpen(true)}
+                  title="Open ATS Resume Viewer"
+                >
+                  <span>📄</span> View Resume
+                </button>
               </div>
             </div>
           </div>
@@ -870,6 +932,35 @@ function App() {
               </div>
             </div>
           </div>
+          <div
+            className="resume-callout-card glass-card reveal"
+            style={{
+              marginTop: '2rem',
+              padding: '1.5rem',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'space-between',
+              flexWrap: 'wrap',
+              gap: '1rem',
+              border: '1px solid rgba(6, 182, 212, 0.3)',
+              borderRadius: '16px',
+            }}
+          >
+            <div>
+              <h4 style={{ fontSize: '1.1rem', margin: 0, color: '#fff' }}>Looking for my complete resume?</h4>
+              <p style={{ margin: '0.25rem 0 0 0', color: 'var(--text-secondary)', fontSize: '0.88rem' }}>
+                Download the official ATS-friendly PDF or view the full resume sheet interactively.
+              </p>
+            </div>
+            <div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap' }}>
+              <button type="button" className="btn btn-primary" onClick={() => setResumeOpen(true)}>
+                <span>📄</span> View Resume
+              </button>
+              <a href="/resume.pdf" download="EMAN_A_Resume.pdf" className="btn btn-outline">
+                <span>📥</span> Download PDF
+              </a>
+            </div>
+          </div>
         </section>
 
         <section id="education">
@@ -956,10 +1047,31 @@ function App() {
               </p>
               <div className="social-links">
                 {contacts.map((item) => (
-                  <a key={item.title} href={item.href} target="_blank" rel="noreferrer" className="social-link" title={item.title}>
+                  <a
+                    key={item.title}
+                    href={item.href}
+                    target={item.href.startsWith('http') ? '_blank' : undefined}
+                    rel="noreferrer"
+                    className="social-link"
+                    title={`${item.title}: ${item.value || ''}`}
+                  >
                     {item.label}
                   </a>
                 ))}
+              </div>
+              <div style={{ marginTop: '1.5rem', display: 'flex', flexDirection: 'column', gap: '0.6rem' }}>
+                <a
+                  href="mailto:imman6230@gmail.com"
+                  style={{ display: 'inline-flex', alignItems: 'center', gap: '0.6rem', color: '#e4e4e7', fontSize: '0.92rem' }}
+                >
+                  <span style={{ fontSize: '1.1rem' }}>📧</span> imman6230@gmail.com
+                </a>
+                <a
+                  href="tel:+918610072497"
+                  style={{ display: 'inline-flex', alignItems: 'center', gap: '0.6rem', color: '#e4e4e7', fontSize: '0.92rem' }}
+                >
+                  <span style={{ fontSize: '1.1rem' }}>📞</span> +91 8610072497
+                </a>
               </div>
             </div>
             <form className="contact-form glass-card reveal" id="contactForm" onSubmit={handleSubmit}>
@@ -989,6 +1101,8 @@ function App() {
       <button id="backToTop" title="Back to top" aria-label="Back to top" className={showTop ? 'visible' : ''} onClick={scrollToTop}>
         ⬆
       </button>
+
+      <ResumeModal isOpen={resumeOpen} onClose={() => setResumeOpen(false)} />
     </div>
   );
 }
