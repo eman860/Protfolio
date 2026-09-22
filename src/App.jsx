@@ -439,22 +439,75 @@ const projects = [
   },
 ];
 
-const timelineItems = [
+const experiences = [
   {
-    year: '2023 - 2027 (Pursuing)',
-    title: 'B.E. Computer Science and Engineering',
-    place: 'Annai Mira College Of Engineering And Tech',
-    description:
-      'Pursuing Bachelor of Engineering in Computer Science with a strong academic foundation in software engineering, OOP, and data structures.',
-    extra: 'CGPA: 8.20 (Till 5th Sem)',
+    role: 'Artificial Intelligence Intern',
+    company: 'NEURA GLOBAL',
+    location: 'Remote',
+    period: 'Feb 2026 – Mar 2026',
+    badge: 'AI & Data Intelligence',
+    icon: '🤖',
+    accentColor: '#A855F7',
+    summary:
+      'Engineered and fine-tuned machine learning models as part of an industry AI internship. Gained hands-on experience in training workflows, dataset pipelines, and model evaluation metrics.',
+    responsibilities: [
+      'Built, evaluated, and validated predictive machine learning architectures on structured datasets',
+      'Implemented automated data cleaning, normalization, and feature extraction pipelines',
+      'Participated in collaborative remote technical sprints, code reviews, and experiment benchmarks',
+    ],
+    skills: ['Python', 'Machine Learning', 'Deep Learning', 'Data Preprocessing', 'Model Evaluation', 'Git'],
   },
   {
-    year: '2021 - 2023',
-    title: 'Higher Secondary Certificate (HSC)',
-    place: 'GVC HR SEC SCHOOL',
+    role: 'Java Full Stack Developer Intern',
+    company: 'NEXTGEN',
+    location: 'Chennai / Hybrid',
+    period: 'Jun 2026 – Jul 2026',
+    badge: 'Enterprise Full-Stack',
+    icon: '☕',
+    accentColor: '#06B6D4',
+    summary:
+      'Engineered an end-to-end Hospital Appointment Booking System using core Java, Servlets/JSP, and MySQL. Designed robust database architectures and responsive patient/doctor portals.',
+    responsibilities: [
+      'Architected normalized relational MySQL schema with indexed queries for fast appointment dispatch',
+      'Developed server-side business logic and secure session management using Java Servlets & JSP',
+      'Implemented dynamic client-side forms and responsive dashboards for staff & visitors',
+    ],
+    skills: ['Java', 'JSP & Servlets', 'MySQL', 'JDBC', 'Bootstrap', 'HTML5/CSS3'],
+  },
+];
+
+const educationList = [
+  {
+    degree: 'B.E. Computer Science and Engineering',
+    institution: 'Annai Mira College Of Engineering And Tech',
+    period: '2023 – 2027',
+    status: 'Currently Pursuing',
+    icon: '🎓',
+    accentColor: '#06B6D4',
+    grade: 'CGPA: 8.20',
+    gradeSub: 'Till 5th Semester',
     description:
-      'Completed Higher Secondary Education in the Biology group with a solid grasp of science and mathematics.',
-    extra: 'Score: 70%',
+      'Undergoing comprehensive undergraduate engineering training with a robust focus on software design, data structures, algorithms, and full-stack software development.',
+    coursework: [
+      'Data Structures & Algorithms',
+      'Object-Oriented Programming (Java/C++)',
+      'Database Management Systems (RDBMS)',
+      'Operating Systems & System Design',
+      'Computer Networks',
+    ],
+  },
+  {
+    degree: 'Higher Secondary Certificate (HSC)',
+    institution: 'GVC Higher Secondary School',
+    period: '2021 – 2023',
+    status: 'Completed',
+    icon: '🏫',
+    accentColor: '#10B981',
+    grade: 'Score: 70%',
+    gradeSub: 'State Board Curriculum',
+    description:
+      'Completed Higher Secondary Education in the science and biology discipline with strong fundamentals in mathematics, analytical reasoning, and scientific methodology.',
+    coursework: ['Mathematics', 'Physics', 'Chemistry', 'Biology'],
   },
 ];
 
@@ -906,57 +959,86 @@ function App() {
         </section>
 
         <section id="experience">
-          <h2 className="section-title">
-            Experience / <span className="gradient-text">Internships</span>
-          </h2>
-          <div className="timeline">
-            <div className="timeline-item reveal">
-              <div className="timeline-content">
-                <span className="timeline-year">Feb 2026 – Mar 2026</span>
-                <h3 className="timeline-title">Artificial Intelligence Intern</h3>
-                <p className="timeline-place">NEURA GLOBAL — Remote</p>
-                <p className="timeline-description">
-                  Built and trained machine learning models as part of the AI internship, gaining hands-on experience with model development and evaluation workflows. Worked in a remote,
-                  collaborative environment applying ML concepts to real problems.
-                </p>
-              </div>
-            </div>
-            <div className="timeline-item reveal">
-              <div className="timeline-content">
-                <span className="timeline-year">Jun 2026 – Jul 2026</span>
-                <h3 className="timeline-title">Java Full Stack Developer Intern</h3>
-                <p className="timeline-place">NEXTGEN</p>
-                <p className="timeline-description">
-                  Developed a full-stack hospital appointment booking application using Java, JSP/Servlets, and MySQL. Designed the database schema and dynamic JSP pages to handle appointment scheduling and patient records.
-                </p>
-              </div>
-            </div>
+          <div className="section-header">
+            <h2 className="section-title">
+              Work <span className="gradient-text">Experience</span>
+            </h2>
+            <p className="section-subtitle">
+              Industry internships focused on enterprise full-stack Java architecture and AI engineering workflows
+            </p>
           </div>
-          <div
-            className="resume-callout-card glass-card reveal"
-            style={{
-              marginTop: '2rem',
-              padding: '1.5rem',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'space-between',
-              flexWrap: 'wrap',
-              gap: '1rem',
-              border: '1px solid rgba(6, 182, 212, 0.3)',
-              borderRadius: '16px',
-            }}
-          >
-            <div>
-              <h4 style={{ fontSize: '1.1rem', margin: 0, color: '#fff' }}>Looking for my complete resume?</h4>
-              <p style={{ margin: '0.25rem 0 0 0', color: 'var(--text-secondary)', fontSize: '0.88rem' }}>
-                Download the official ATS-friendly PDF or view the full resume sheet interactively.
-              </p>
+
+          <div className="experience-cards-grid">
+            {experiences.map((exp) => (
+              <div
+                className="xp-card glass-card reveal"
+                key={exp.role + exp.company}
+                style={{ '--xp-accent': exp.accentColor }}
+              >
+                <div className="xp-card-header">
+                  <div
+                    className="xp-icon-badge"
+                    style={{ borderColor: `${exp.accentColor}55`, background: `${exp.accentColor}18` }}
+                  >
+                    <span>{exp.icon}</span>
+                  </div>
+                  <div className="xp-header-info">
+                    <div className="xp-meta-row">
+                      <span className="xp-badge" style={{ color: exp.accentColor, borderColor: `${exp.accentColor}40` }}>
+                        {exp.badge}
+                      </span>
+                      <span className="xp-period-tag">{exp.period}</span>
+                    </div>
+                    <h3 className="xp-role-title">{exp.role}</h3>
+                    <div className="xp-company-row">
+                      <span className="xp-company-name">{exp.company}</span>
+                      <span className="xp-dot">•</span>
+                      <span className="xp-location">{exp.location}</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="xp-card-body">
+                  <p className="xp-summary">{exp.summary}</p>
+
+                  <div className="xp-highlights-list">
+                    <span className="xp-highlights-heading">Key Contributions:</span>
+                    <ul>
+                      {exp.responsibilities.map((resp, i) => (
+                        <li key={i}>{resp}</li>
+                      ))}
+                    </ul>
+                  </div>
+
+                  <div className="xp-skills-wrap">
+                    {exp.skills.map((skill) => (
+                      <span className="xp-skill-pill" key={skill}>
+                        {skill}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <div className="resume-callout-card glass-card reveal">
+            <div className="callout-content">
+              <div className="callout-icon-wrap">
+                <span>📄</span>
+              </div>
+              <div>
+                <h4 className="callout-title">Looking for my complete resume?</h4>
+                <p className="callout-sub">
+                  Download the official ATS-friendly PDF or inspect my comprehensive credential sheet interactively.
+                </p>
+              </div>
             </div>
-            <div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap' }}>
+            <div className="callout-actions">
               <button type="button" className="btn btn-primary" onClick={() => setResumeOpen(true)}>
-                <span>📄</span> View Resume
+                <span>👁️</span> View Full Resume
               </button>
-              <a href="/resume.pdf" download="EMAN_A_Resume.pdf" className="btn btn-outline">
+              <a href="/resume.pdf" download="Imman_Resume.pdf" className="btn btn-outline">
                 <span>📥</span> Download PDF
               </a>
             </div>
@@ -964,18 +1046,65 @@ function App() {
         </section>
 
         <section id="education">
-          <h2 className="section-title">
-            My <span className="gradient-text">Journey</span>
-          </h2>
-          <div className="timeline">
-            {timelineItems.map((item) => (
-              <div className="timeline-item reveal" key={item.year + item.title}>
-                <div className="timeline-content">
-                  <span className="timeline-year">{item.year}</span>
-                  <h3 className="timeline-title">{item.title}</h3>
-                  <p className="timeline-place">{item.place}</p>
-                  <p className="timeline-description">{item.description}</p>
-                  <p className="timeline-description">{item.extra}</p>
+          <div className="section-header">
+            <h2 className="section-title">
+              Academic <span className="gradient-text">Education</span>
+            </h2>
+            <p className="section-subtitle">
+              Formal university milestones, computer science coursework, and scholastic performance
+            </p>
+          </div>
+
+          <div className="education-cards-grid">
+            {educationList.map((edu) => (
+              <div
+                className="edu-card glass-card reveal"
+                key={edu.degree}
+                style={{ '--edu-accent': edu.accentColor }}
+              >
+                <div className="edu-top-row">
+                  <div
+                    className="edu-icon-badge"
+                    style={{ borderColor: `${edu.accentColor}55`, background: `${edu.accentColor}18` }}
+                  >
+                    <span>{edu.icon}</span>
+                  </div>
+                  <div className="edu-status-badge">
+                    <span
+                      className="status-live-dot"
+                      style={{ background: edu.accentColor, boxShadow: `0 0 10px ${edu.accentColor}` }}
+                    />
+                    <span>{edu.status}</span>
+                  </div>
+                </div>
+
+                <div className="edu-main-info">
+                  <span className="edu-period-pill">{edu.period}</span>
+                  <h3 className="edu-degree-title">{edu.degree}</h3>
+                  <h4 className="edu-institution-name">{edu.institution}</h4>
+                </div>
+
+                <div
+                  className="edu-score-banner"
+                  style={{ background: `${edu.accentColor}12`, borderColor: `${edu.accentColor}35` }}
+                >
+                  <div className="score-val" style={{ color: edu.accentColor }}>
+                    {edu.grade}
+                  </div>
+                  <div className="score-sub">{edu.gradeSub}</div>
+                </div>
+
+                <p className="edu-desc">{edu.description}</p>
+
+                <div className="edu-coursework-section">
+                  <span className="coursework-title">Core Areas & Coursework:</span>
+                  <div className="coursework-pills">
+                    {edu.coursework.map((course) => (
+                      <span className="course-pill" key={course}>
+                        {course}
+                      </span>
+                    ))}
+                  </div>
                 </div>
               </div>
             ))}
