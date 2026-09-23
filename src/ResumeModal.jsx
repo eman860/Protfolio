@@ -80,7 +80,7 @@ export default function ResumeModal({ isOpen, onClose }) {
                 <span className="sep">•</span>
                 <a href="https://github.com/eman860" target="_blank" rel="noreferrer" className="resume-link">GitHub</a>
                 <span className="sep">•</span>
-                <a href="#hero" onClick={onClose} className="resume-link">Portfolio</a>
+                <a href="#home" onClick={onClose} className="resume-link">Portfolio</a>
               </div>
             </header>
 
