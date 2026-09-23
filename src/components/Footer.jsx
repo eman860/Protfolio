@@ -36,12 +36,12 @@ export default function Footer({ onTriggerEasterEgg }) {
             <span className="footer-col-title">Connect</span>
             <ul className="footer-links-list">
               <li>
-                <a href={personalInfo.github} target="_blank" rel="noreferrer">
+                <a href={personalInfo.github} target="_blank" rel="noopener noreferrer">
                   GitHub ↗
                 </a>
               </li>
               <li>
-                <a href={personalInfo.linkedin} target="_blank" rel="noreferrer">
+                <a href={personalInfo.linkedin} target="_blank" rel="noopener noreferrer">
                   LinkedIn ↗
                 </a>
               </li>

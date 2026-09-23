@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import HeroOrbCanvas from './HeroOrbCanvas';
 import { personalInfo, kineticRoles, marqueeSkills } from '../data/portfolioData';
 
-export default function Hero({ onOpenResume }) {
+export default function Hero() {
   const [roleIndex, setRoleIndex] = useState(0);
   const [text, setText] = useState('');
   const [isDeleting, setIsDeleting] = useState(false);

@@ -72,7 +72,7 @@ export default function App() {
 
       {/* Main Content Sections */}
       <main id="main-content">
-        <Hero onOpenResume={() => setResumeOpen(true)} />
+        <Hero />
         <About onOpenResume={() => setResumeOpen(true)} />
         <TechConstellation />
         <ProjectsSection />

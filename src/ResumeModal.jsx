@@ -76,9 +76,9 @@ export default function ResumeModal({ isOpen, onClose }) {
                 <span className="sep">•</span>
                 <a href="tel:+918610072497" className="resume-link">+91 8610072497</a>
                 <span className="sep">•</span>
-                <a href="https://www.linkedin.com/in/imman-10im" target="_blank" rel="noreferrer" className="resume-link">LinkedIn</a>
+                <a href="https://www.linkedin.com/in/imman-10im" target="_blank" rel="noopener noreferrer" className="resume-link">LinkedIn</a>
                 <span className="sep">•</span>
-                <a href="https://github.com/eman860" target="_blank" rel="noreferrer" className="resume-link">GitHub</a>
+                <a href="https://github.com/eman860" target="_blank" rel="noopener noreferrer" className="resume-link">GitHub</a>
                 <span className="sep">•</span>
                 <a href="#home" onClick={onClose} className="resume-link">Portfolio</a>
               </div>

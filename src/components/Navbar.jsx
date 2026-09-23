@@ -181,7 +181,7 @@ export default function Navbar({ onOpenResume, onOpenCommandPalette }) {
               <a
                 href={personalInfo.github}
                 target="_blank"
-                rel="noreferrer"
+                rel="noopener noreferrer"
                 className="mobile-social-link"
               >
                 GitHub
@@ -190,7 +190,7 @@ export default function Navbar({ onOpenResume, onOpenCommandPalette }) {
               <a
                 href={personalInfo.linkedin}
                 target="_blank"
-                rel="noreferrer"
+                rel="noopener noreferrer"
                 className="mobile-social-link"
               >
                 LinkedIn

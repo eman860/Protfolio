@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { personalInfo, contacts } from '../data/portfolioData';
+import { contacts } from '../data/portfolioData';
 
 export default function Contact() {
   const [formSubmitted, setFormSubmitted] = useState(false);
@@ -59,7 +59,7 @@ export default function Contact() {
                     <a
                       href={item.href}
                       target={item.isExternal ? '_blank' : '_self'}
-                      rel="noreferrer"
+                      rel={item.isExternal ? 'noopener noreferrer' : undefined}
                       className="contact-item-val"
                       data-cursor="LINK"
                     >

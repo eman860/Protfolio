@@ -83,7 +83,7 @@ export default function EducationAndAchievements() {
                 <a
                   href={item.link}
                   target="_blank"
-                  rel="noreferrer"
+                  rel="noopener noreferrer"
                   className="btn btn-outline"
                   data-cursor="RESEARCH ↗"
                 >

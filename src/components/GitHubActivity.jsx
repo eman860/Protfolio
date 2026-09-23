@@ -104,7 +104,7 @@ export default function GitHubActivity() {
             <a
               href={personalInfo.github}
               target="_blank"
-              rel="noreferrer"
+              rel="noopener noreferrer"
               className="btn btn-outline gh-profile-link"
               data-cursor="GITHUB"
             >
@@ -137,7 +137,7 @@ export default function GitHubActivity() {
               key={repo.name}
               href={repo.html_url}
               target="_blank"
-              rel="noreferrer"
+              rel="noopener noreferrer"
               className="repo-card glass-panel"
               data-cursor="REPO ↗"
             >
