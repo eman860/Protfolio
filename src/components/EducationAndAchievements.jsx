@@ -1,12 +1,17 @@
 import React from 'react';
 import { educationList, achievements } from '../data/portfolioData';
+import { useScrollReveal, useStaggerReveal } from '../hooks/useScrollReveal';
 
 export default function EducationAndAchievements() {
+  const headerRef = useScrollReveal({ threshold: 0.1 });
+  const eduRef = useStaggerReveal({ childSelector: '.edu-card', threshold: 0.05 });
+  const achieveRef = useScrollReveal({ threshold: 0.1 });
+
   return (
     <section id="education" className="section-padding edu-achieve-section">
       <div className="section-container">
         {/* Section Header */}
-        <div className="section-header">
+        <div className="section-header reveal-section" ref={headerRef}>
           <div className="section-eyebrow">
             <span className="eyebrow-dot" />
             <span>07 // ACADEMIA & MILESTONES</span>
@@ -20,11 +25,11 @@ export default function EducationAndAchievements() {
         </div>
 
         {/* Education Cards Grid */}
-        <div className="education-grid">
+        <div className="education-grid" ref={eduRef}>
           {educationList.map((edu) => (
             <div
               key={edu.degree}
-              className="edu-card glass-panel"
+              className="edu-card glass-panel reveal-item"
               style={{ '--edu-accent': edu.accentColor }}
             >
               <div className="edu-top-row">
@@ -65,7 +70,7 @@ export default function EducationAndAchievements() {
         </div>
 
         {/* Conference Achievements Block */}
-        <div className="achievements-card glass-panel">
+        <div className="achievements-card glass-panel reveal-section" ref={achieveRef}>
           <div className="achieve-header">
             <div className="achieve-badge">
               <span className="badge-icon">🔬</span>

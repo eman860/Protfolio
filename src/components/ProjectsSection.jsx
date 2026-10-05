@@ -1,11 +1,60 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useCallback } from 'react';
 import { projects } from '../data/portfolioData';
 import ProjectDetailModal from './ProjectDetailModal';
+import { useStaggerReveal, useScrollReveal } from '../hooks/useScrollReveal';
+
+/* Subtle 3D tilt card wrapper — desktop only */
+function TiltCard({ children, className, style, onClick, role, tabIndex, onKeyDown, 'data-cursor': dataCursor }) {
+  const cardRef = useRef(null);
+  const isMobile = typeof window !== 'undefined' && window.matchMedia('(max-width: 768px)').matches;
+
+  const handleMouseMove = useCallback((e) => {
+    if (isMobile) return;
+    const card = cardRef.current;
+    if (!card) return;
+    const rect = card.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    const cx = rect.width / 2;
+    const cy = rect.height / 2;
+    const rotateY = ((x - cx) / cx) * 4;
+    const rotateX = -((y - cy) / cy) * 2.5;
+    card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-4px)`;
+  }, [isMobile]);
+
+  const handleMouseLeave = useCallback(() => {
+    if (isMobile) return;
+    const card = cardRef.current;
+    if (!card) return;
+    card.style.transform = '';
+  }, [isMobile]);
+
+  return (
+    <article
+      ref={cardRef}
+      className={className}
+      style={style}
+      onClick={onClick}
+      role={role}
+      tabIndex={tabIndex}
+      onKeyDown={onKeyDown}
+      data-cursor={dataCursor}
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
+    >
+      {children}
+    </article>
+  );
+}
 
 export default function ProjectsSection() {
   const [selectedProject, setSelectedProject] = useState(null);
   const [modalOpen, setModalOpen] = useState(false);
   const [filter, setFilter] = useState('all');
+
+  const headerRef = useScrollReveal({ threshold: 0.1 });
+  const filterRef = useScrollReveal({ threshold: 0.1 });
+  const listRef = useScrollReveal({ threshold: 0.05 });
 
   const openCaseStudy = (proj) => {
     setSelectedProject(proj);
@@ -32,7 +81,7 @@ export default function ProjectsSection() {
     <section id="projects" className="section-padding projects-section">
       <div className="section-container">
         {/* Section Header */}
-        <div className="section-header">
+        <div className="section-header reveal-section" ref={headerRef}>
           <div className="section-eyebrow">
             <span className="eyebrow-dot" />
             <span>03 // FEATURED WORK</span>
@@ -46,7 +95,7 @@ export default function ProjectsSection() {
         </div>
 
         {/* Filter Pills */}
-        <div className="project-category-bar">
+        <div className="project-category-bar reveal-section" ref={filterRef}>
           <button
             type="button"
             className={`project-tab-pill ${filter === 'all' ? 'is-active' : ''}`}
@@ -66,21 +115,21 @@ export default function ProjectsSection() {
             className={`project-tab-pill ${filter === 'enterprise' ? 'is-active' : ''}`}
             onClick={() => setFilter('enterprise')}
           >
-            Enterprise & Systems ({getCategoryCount('enterprise')})
+            Enterprise &amp; Systems ({getCategoryCount('enterprise')})
           </button>
           <button
             type="button"
             className={`project-tab-pill ${filter === 'ai' ? 'is-active' : ''}`}
             onClick={() => setFilter('ai')}
           >
-            AI & Research ({getCategoryCount('ai')})
+            AI &amp; Research ({getCategoryCount('ai')})
           </button>
         </div>
 
-        {/* Projects Grid: Large Editorial Cards */}
-        <div className="projects-editorial-list">
+        {/* Projects Grid */}
+        <div className="projects-editorial-list reveal-section" ref={listRef}>
           {filteredProjects.map((project) => (
-            <article
+            <TiltCard
               key={project.id}
               className={`project-card glass-panel ${project.featured ? 'is-featured' : ''}`}
               style={{ '--project-accent': project.accentColor }}
@@ -101,7 +150,6 @@ export default function ProjectsSection() {
                   <span className="project-index-num">{project.number}</span>
                   <span className="project-category-tag">{project.category}</span>
                 </div>
-
                 <div className="project-badge-pill" style={{ color: project.accentColor, borderColor: `${project.accentColor}40` }}>
                   <span className="badge-icon">{project.icon}</span>
                   <span>{project.badge}</span>
@@ -127,9 +175,7 @@ export default function ProjectsSection() {
               {/* Tech Stack Chips */}
               <div className="project-tech-chips">
                 {project.techStack.map((tech) => (
-                  <span className="project-tech-chip" key={tech}>
-                    {tech}
-                  </span>
+                  <span className="project-tech-chip" key={tech}>{tech}</span>
                 ))}
               </div>
 
@@ -148,7 +194,6 @@ export default function ProjectsSection() {
                       <span>🚀 Live Demo</span>
                     </a>
                   )}
-
                   {project.github && project.github.startsWith('http') && (
                     <a
                       href={project.github}
@@ -162,7 +207,6 @@ export default function ProjectsSection() {
                     </a>
                   )}
                 </div>
-
                 <button
                   type="button"
                   className="btn btn-ghost btn-sm case-study-trigger"
@@ -177,17 +221,16 @@ export default function ProjectsSection() {
                 </button>
               </div>
 
-              {/* Subtle Ambient Hover Glow */}
+              {/* Ambient Glow */}
               <div
                 className="project-ambient-glow"
                 style={{ background: `radial-gradient(circle at 80% 20%, ${project.accentGlow}, transparent 70%)` }}
               />
-            </article>
+            </TiltCard>
           ))}
         </div>
       </div>
 
-      {/* Mini Case Study Modal */}
       <ProjectDetailModal
         project={selectedProject}
         isOpen={modalOpen}

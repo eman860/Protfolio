@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { personalInfo } from '../data/portfolioData';
+import { useScrollReveal, useStaggerReveal } from '../hooks/useScrollReveal';
 
 // Fallback verified data if GitHub API is offline or rate-limited
 const staticGitHubData = {
@@ -42,6 +43,10 @@ export default function GitHubActivity() {
   const [githubUser, setGithubUser] = useState(staticGitHubData);
   const [repos, setRepos] = useState(staticGitHubData.pinnedRepos);
 
+  const headerRef = useScrollReveal({ threshold: 0.1 });
+  const cardRef = useScrollReveal({ threshold: 0.1 });
+  const reposRef = useStaggerReveal({ childSelector: '.repo-card', threshold: 0.05 });
+
   useEffect(() => {
     // Attempt live fetch from GitHub public REST API
     fetch('https://api.github.com/users/eman860')
@@ -67,7 +72,7 @@ export default function GitHubActivity() {
     <section id="code-activity" className="section-padding github-section">
       <div className="section-container">
         {/* Section Header */}
-        <div className="section-header">
+        <div className="section-header reveal-section" ref={headerRef}>
           <div className="section-eyebrow">
             <span className="eyebrow-dot" />
             <span>05 // CODE ACTIVITY</span>
@@ -81,7 +86,7 @@ export default function GitHubActivity() {
         </div>
 
         {/* GitHub Metrics Card */}
-        <div className="github-profile-card glass-panel">
+        <div className="github-profile-card glass-panel reveal-section" ref={cardRef}>
           <div className="gh-user-row">
             <img
               src={githubUser.avatar_url}
@@ -131,14 +136,14 @@ export default function GitHubActivity() {
         </div>
 
         {/* Selected Repositories Grid */}
-        <div className="gh-repos-grid">
+        <div className="gh-repos-grid" ref={reposRef}>
           {repos.map((repo) => (
             <a
               key={repo.name}
               href={repo.html_url}
               target="_blank"
               rel="noopener noreferrer"
-              className="repo-card glass-panel"
+              className="repo-card glass-panel reveal-item"
               data-cursor="REPO ↗"
             >
               <div className="repo-header">

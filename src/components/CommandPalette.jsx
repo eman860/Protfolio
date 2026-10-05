@@ -7,6 +7,7 @@ export default function CommandPalette({
   onOpenResume,
   onOpenAi,
   onTriggerEasterEgg,
+  onReplayIntro,
 }) {
   const [query, setQuery] = useState('');
   const [selectedIndex, setSelectedIndex] = useState(0);
@@ -128,6 +129,14 @@ export default function CommandPalette({
       icon: '✦',
       shortcut: 'Q',
       perform: () => onOpenAi(),
+    },
+    {
+      id: 'replay-intro',
+      label: 'Replay AI Boot Sequence / Holographic Intro',
+      category: 'AI Assistant',
+      icon: '⚡',
+      shortcut: 'I',
+      perform: () => onReplayIntro?.(),
     },
     {
       id: 'github',

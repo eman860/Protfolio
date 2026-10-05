@@ -18,6 +18,9 @@ import ResumeModal from './ResumeModal';
 import CommandPalette from './components/CommandPalette';
 import AiAssistant from './components/AiAssistant';
 import EasterEggs from './components/EasterEggs';
+import AiBackground from './components/AiBackground';
+import MouseSpotlight from './components/MouseSpotlight';
+import IntroScreen from './components/IntroScreen';
 
 export default function App() {
   const [resumeOpen, setResumeOpen] = useState(false);
@@ -25,6 +28,16 @@ export default function App() {
   const [aiOpen, setAiOpen] = useState(false);
   const [easterEggOpen, setEasterEggOpen] = useState(false);
   const [scrollProgress, setScrollProgress] = useState(0);
+
+  // Show intro once per session (not on every hot-reload)
+  const [introComplete, setIntroComplete] = useState(() => {
+    return sessionStorage.getItem('intro-done') === '1';
+  });
+
+  const handleIntroComplete = () => {
+    sessionStorage.setItem('intro-done', '1');
+    setIntroComplete(true);
+  };
 
   // Global scroll progress tracker
   useEffect(() => {
@@ -53,63 +66,81 @@ export default function App() {
   }, []);
 
   return (
-    <div className="portfolio-app">
-      {/* Scroll Progress Bar */}
-      <div
-        className="scroll-progress-bar"
-        style={{ width: `${scrollProgress}%` }}
-        aria-hidden="true"
-      />
+    <>
+      {/* AI Intro Screen — shows on first visit per session */}
+      {!introComplete && (
+        <IntroScreen onComplete={handleIntroComplete} />
+      )}
 
-      {/* Desktop Custom Magnetic Cursor */}
-      <CustomCursor />
+      {/* Portfolio App — fades in after intro */}
+      <div className={`portfolio-app ${introComplete ? 'app-visible' : 'app-hidden'}`}>
+        {/* Scroll Progress Bar */}
+        <div
+          className="scroll-progress-bar"
+          style={{ width: `${scrollProgress}%` }}
+          aria-hidden="true"
+        />
 
-      {/* Global Navbar */}
-      <Navbar
-        onOpenResume={() => setResumeOpen(true)}
-        onOpenCommandPalette={() => setCmdOpen(true)}
-      />
+        {/* AI-style Neural Network Background */}
+        <AiBackground />
 
-      {/* Main Content Sections */}
-      <main id="main-content">
-        <Hero />
-        <About onOpenResume={() => setResumeOpen(true)} />
-        <TechConstellation />
-        <ProjectsSection />
-        <ExperienceTimeline onOpenResume={() => setResumeOpen(true)} />
-        <GitHubActivity />
-        <ProblemSolving />
-        <EducationAndAchievements />
-        <Contact />
-      </main>
+        {/* Mouse Spotlight — desktop only */}
+        <MouseSpotlight />
 
-      {/* Futuristic Footer */}
-      <Footer onTriggerEasterEgg={() => setEasterEggOpen(true)} />
+        {/* Desktop Custom Magnetic Cursor */}
+        <CustomCursor />
 
-      {/* Floating Ask Imman AI Button */}
-      <button
-        type="button"
-        className="floating-ai-trigger"
-        onClick={() => setAiOpen(true)}
-        title="Ask Imman's AI Portfolio Assistant"
-        aria-label="Open AI Assistant"
-        data-cursor="AI ✦"
-      >
-        <span className="ai-btn-sparkle">✦</span>
-        <span className="ai-btn-text">Ask Imman AI</span>
-      </button>
+        {/* Global Navbar */}
+        <Navbar
+          onOpenResume={() => setResumeOpen(true)}
+          onOpenCommandPalette={() => setCmdOpen(true)}
+        />
 
-      {/* Modals & Dialogs */}
-      <ResumeModal isOpen={resumeOpen} onClose={() => setResumeOpen(false)} />
-      <CommandPalette
-        isOpen={cmdOpen}
-        onClose={() => setCmdOpen(false)}
-        onOpenResume={() => setResumeOpen(true)}
-        onOpenAi={() => setAiOpen(true)}
-        onTriggerEasterEgg={() => setEasterEggOpen(true)}
-      />
-      <AiAssistant isOpen={aiOpen} onClose={() => setAiOpen(false)} />
-      <EasterEggs isOpen={easterEggOpen} onClose={() => setEasterEggOpen(false)} />
-    </div>
+        {/* Main Content Sections */}
+        <main id="main-content">
+          <Hero />
+          <About onOpenResume={() => setResumeOpen(true)} />
+          <TechConstellation />
+          <ProjectsSection />
+          <ExperienceTimeline onOpenResume={() => setResumeOpen(true)} />
+          <GitHubActivity />
+          <ProblemSolving />
+          <EducationAndAchievements />
+          <Contact />
+        </main>
+
+        {/* Futuristic Footer */}
+        <Footer onTriggerEasterEgg={() => setEasterEggOpen(true)} />
+
+        {/* Floating Ask Imman AI Button */}
+        <button
+          type="button"
+          className="floating-ai-trigger"
+          onClick={() => setAiOpen(true)}
+          title="Ask Imman's AI Portfolio Assistant"
+          aria-label="Open AI Assistant"
+          data-cursor="AI ✦"
+        >
+          <span className="ai-btn-sparkle">✦</span>
+          <span className="ai-btn-text">Ask Imman AI</span>
+        </button>
+
+        {/* Modals & Dialogs */}
+        <ResumeModal isOpen={resumeOpen} onClose={() => setResumeOpen(false)} />
+        <CommandPalette
+          isOpen={cmdOpen}
+          onClose={() => setCmdOpen(false)}
+          onOpenResume={() => setResumeOpen(true)}
+          onOpenAi={() => setAiOpen(true)}
+          onTriggerEasterEgg={() => setEasterEggOpen(true)}
+          onReplayIntro={() => {
+            setCmdOpen(false);
+            setIntroComplete(false);
+          }}
+        />
+        <AiAssistant isOpen={aiOpen} onClose={() => setAiOpen(false)} />
+        <EasterEggs isOpen={easterEggOpen} onClose={() => setEasterEggOpen(false)} />
+      </div>
+    </>
   );
 }

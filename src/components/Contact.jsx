@@ -1,9 +1,15 @@
 import React, { useState } from 'react';
 import { contacts } from '../data/portfolioData';
+import { useScrollReveal, useStaggerReveal } from '../hooks/useScrollReveal';
 
 export default function Contact() {
   const [formSubmitted, setFormSubmitted] = useState(false);
   const [copiedId, setCopiedId] = useState(null);
+
+  const headerRef = useScrollReveal({ threshold: 0.1 });
+  const leftRef = useScrollReveal({ threshold: 0.1 });
+  const rightRef = useScrollReveal({ threshold: 0.1 });
+  const cardsRef = useStaggerReveal({ childSelector: '.contact-item-row', threshold: 0.05 });
 
   const handleCopy = (id, value) => {
     navigator.clipboard.writeText(value);
@@ -29,7 +35,7 @@ export default function Contact() {
     <section id="contact" className="section-padding contact-section">
       <div className="section-container">
         {/* Section Header */}
-        <div className="section-header">
+        <div className="section-header reveal-section" ref={headerRef}>
           <div className="section-eyebrow">
             <span className="eyebrow-dot" />
             <span>08 // GET IN TOUCH</span>
@@ -44,15 +50,15 @@ export default function Contact() {
 
         <div className="contact-grid">
           {/* Left Column: Direct Info & Quick Copy Links */}
-          <div className="contact-info-panel glass-panel">
+          <div className="contact-info-panel glass-panel reveal-slide-right" ref={leftRef}>
             <h3 className="contact-panel-title">Direct Communication Channels</h3>
             <p className="contact-panel-sub">
               I am actively seeking software developer internships, full-time engineering roles, and high-impact collaborative projects.
             </p>
 
-            <div className="contact-cards-list">
+            <div className="contact-cards-list" ref={cardsRef}>
               {contacts.map((item) => (
-                <div className="contact-item-row" key={item.id}>
+                <div className="contact-item-row reveal-item" key={item.id}>
                   <div className="contact-item-icon">{item.icon}</div>
                   <div className="contact-item-details">
                     <span className="contact-item-label">{item.title}</span>
@@ -93,7 +99,7 @@ export default function Contact() {
           </div>
 
           {/* Right Column: Message Dispatch Form */}
-          <div className="contact-form-panel glass-panel">
+          <div className="contact-form-panel glass-panel reveal-slide-left" ref={rightRef}>
             <h3 className="contact-panel-title">Send a Direct Message</h3>
             <p className="contact-panel-sub">
               Your inquiry will be answered promptly within 24 business hours.
@@ -139,13 +145,13 @@ export default function Contact() {
 
                 <div className="form-group">
                   <label htmlFor="contact-message" className="form-label">
-                    Project / Inquiry Details
+                    Message
                   </label>
                   <textarea
                     id="contact-message"
                     name="message"
                     rows={4}
-                    placeholder="Describe your project, team opportunity, or timeline..."
+                    placeholder="Tell me about your team, project, or idea..."
                     required
                     className="form-input form-textarea"
                   />
@@ -153,10 +159,10 @@ export default function Contact() {
 
                 <button
                   type="submit"
-                  className="btn btn-primary btn-block"
-                  data-cursor="SEND"
+                  className="btn btn-primary btn-submit"
+                  data-cursor="SEND →"
                 >
-                  <span>Transmit Message</span>
+                  <span>Dispatch Message</span>
                   <span className="btn-arrow">→</span>
                 </button>
               </form>

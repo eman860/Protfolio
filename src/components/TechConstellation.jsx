@@ -1,20 +1,36 @@
-import React, { useMemo, useState } from 'react';
+import React, { useMemo, useState, useCallback } from 'react';
 import { allSkills, skillCategories } from '../data/portfolioData';
+import { useScrollReveal } from '../hooks/useScrollReveal';
 
 export default function TechConstellation() {
   const [activeCategory, setActiveCategory] = useState('all');
   const [hoveredSkill, setHoveredSkill] = useState(allSkills[0]);
+
+  const headerRef = useScrollReveal({ threshold: 0.1 });
+  const filterRef = useScrollReveal({ threshold: 0.1 });
+  const cardsRef = useScrollReveal({ threshold: 0.05 });
+  const inspectorRef = useScrollReveal({ threshold: 0.1 });
 
   const filteredSkills = useMemo(() => {
     if (activeCategory === 'all') return allSkills;
     return allSkills.filter((s) => s.category === activeCategory);
   }, [activeCategory]);
 
+  // Mouse-tracking for per-card radial glow
+  const handleCardMouseMove = useCallback((e) => {
+    const card = e.currentTarget;
+    const rect = card.getBoundingClientRect();
+    const x = ((e.clientX - rect.left) / rect.width) * 100;
+    const y = ((e.clientY - rect.top) / rect.height) * 100;
+    card.style.setProperty('--mx', `${x}%`);
+    card.style.setProperty('--my', `${y}%`);
+  }, []);
+
   return (
     <section id="skills" className="section-padding tech-section">
       <div className="section-container">
         {/* Section Header */}
-        <div className="section-header">
+        <div className="section-header reveal-section" ref={headerRef}>
           <div className="section-eyebrow">
             <span className="eyebrow-dot" />
             <span>02 // CAPABILITIES & ARCHITECTURE</span>
@@ -28,7 +44,7 @@ export default function TechConstellation() {
         </div>
 
         {/* Category Filter Tabs */}
-        <div className="tech-filter-bar">
+        <div className="tech-filter-bar reveal-section" ref={filterRef}>
           {skillCategories.map((cat) => {
             const count =
               cat.id === 'all'
@@ -53,7 +69,7 @@ export default function TechConstellation() {
         {/* Main Constellation & Inspector Layout */}
         <div className="tech-layout-grid">
           {/* Left Grid: Constellation Cards */}
-          <div className="tech-cards-grid">
+          <div className="tech-cards-grid reveal-section" ref={cardsRef}>
             {filteredSkills.map((skill) => {
               const isSelected = hoveredSkill?.name === skill.name;
               return (
@@ -61,6 +77,7 @@ export default function TechConstellation() {
                   key={skill.name}
                   className={`skill-constellation-card ${isSelected ? 'is-inspected' : ''}`}
                   onMouseEnter={() => setHoveredSkill(skill)}
+                  onMouseMove={handleCardMouseMove}
                   onClick={() => setHoveredSkill(skill)}
                   style={{
                     '--skill-color': skill.color,
@@ -80,7 +97,7 @@ export default function TechConstellation() {
           </div>
 
           {/* Right Column: Live Technology Inspector Panel */}
-          <div className="tech-inspector-panel glass-panel">
+          <div className="tech-inspector-panel glass-panel reveal-section" ref={inspectorRef}>
             <div className="inspector-top-badge">
               <span className="status-live-dot" />
               <span>ACTIVE INSPECTOR</span>

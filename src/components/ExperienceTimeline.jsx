@@ -1,12 +1,17 @@
 import React from 'react';
 import { experiences } from '../data/portfolioData';
+import { useScrollReveal, useStaggerReveal } from '../hooks/useScrollReveal';
 
 export default function ExperienceTimeline({ onOpenResume }) {
+  const headerRef = useScrollReveal({ threshold: 0.1 });
+  const listRef = useStaggerReveal({ childSelector: '.xp-timeline-card', threshold: 0.05 });
+  const bannerRef = useScrollReveal({ threshold: 0.1 });
+
   return (
     <section id="experience" className="section-padding experience-section">
       <div className="section-container">
         {/* Section Header */}
-        <div className="section-header">
+        <div className="section-header reveal-section" ref={headerRef}>
           <div className="section-eyebrow">
             <span className="eyebrow-dot" />
             <span>04 // TRACK RECORD</span>
@@ -20,11 +25,11 @@ export default function ExperienceTimeline({ onOpenResume }) {
         </div>
 
         {/* Experience Timeline Cards */}
-        <div className="experience-timeline-wrap">
+        <div className="experience-timeline-wrap" ref={listRef}>
           {experiences.map((exp, idx) => (
             <div
               key={exp.role + exp.company}
-              className="xp-timeline-card glass-panel"
+              className="xp-timeline-card glass-panel reveal-item"
               style={{ '--xp-accent': exp.accentColor }}
             >
               {/* Timeline Indicator Column */}
@@ -70,9 +75,7 @@ export default function ExperienceTimeline({ onOpenResume }) {
                 {/* Technology Badges */}
                 <div className="xp-skills-strip">
                   {exp.skills.map((skill) => (
-                    <span className="xp-skill-chip" key={skill}>
-                      {skill}
-                    </span>
+                    <span className="xp-skill-chip" key={skill}>{skill}</span>
                   ))}
                 </div>
               </div>
@@ -81,7 +84,7 @@ export default function ExperienceTimeline({ onOpenResume }) {
         </div>
 
         {/* Resume Quick Callout Banner */}
-        <div className="resume-banner glass-panel">
+        <div className="resume-banner glass-panel reveal-section" ref={bannerRef}>
           <div className="banner-left">
             <span className="banner-icon">📄</span>
             <div>
