@@ -3945,6 +3945,11 @@ section {
   opacity: 1;
 }
 
+.portfolio-app {
+  position: relative;
+  min-height: 100vh;
+}
+
 /* Mouse spotlight radial glow that follows cursor */
 .mouse-spotlight {
   position: fixed;
@@ -5214,5 +5219,658 @@ body::before {
   .intro-corner-tr { right: 14px; }
   .intro-corner-bl { bottom: 14px; }
   .intro-corner-br { bottom: 14px; right: 14px; }
+}
+
+/* ==========================================================================
+   INTERACTIVE CYBER INTRO SCREEN  (.si-*) - Rich 3D Motion
+   ========================================================================== */
+
+.si-root {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  background: #060609;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  perspective: 1000px;
+  opacity: 0;
+  transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.si-root.si-active {
+  opacity: 1;
+}
+
+.si-root.si-exiting {
+  animation: siCinematicExit 0.65s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+@keyframes siCinematicExit {
+  0% {
+    opacity: 1;
+    transform: scale(1);
+    filter: blur(0px);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1.08);
+    filter: blur(12px);
+  }
+}
+
+/* ── Perspective Cyber Horizon Grid ──────────────────────────────── */
+.si-cyber-grid {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.si-grid-lines {
+  position: absolute;
+  bottom: -40%;
+  left: -50%;
+  right: -50%;
+  height: 90%;
+  background-image:
+    linear-gradient(to right, rgba(139, 92, 246, 0.12) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(56, 189, 248, 0.12) 1px, transparent 1px);
+  background-size: 50px 50px;
+  transform: perspective(400px) rotateX(72deg);
+  transform-origin: 50% 100%;
+  animation: siGridTravel 16s linear infinite;
+  mask-image: radial-gradient(ellipse at 50% 100%, black 20%, transparent 80%);
+  -webkit-mask-image: radial-gradient(ellipse at 50% 100%, black 20%, transparent 80%);
+}
+
+@keyframes siGridTravel {
+  0%   { background-position: 0 0; }
+  100% { background-position: 0 500px; }
+}
+
+.si-horizon-glow {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 180px;
+  background: radial-gradient(ellipse at 50% 100%, rgba(139, 92, 246, 0.22) 0%, rgba(56, 189, 248, 0.08) 50%, transparent 80%);
+  filter: blur(30px);
+}
+
+/* ── Ambient Aurora Orbs ─────────────────────────────────────────── */
+.si-glow-orb {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  filter: blur(90px);
+  z-index: 0;
+}
+
+.si-glow-1 {
+  width: 420px;
+  height: 420px;
+  top: 15%;
+  left: 20%;
+  background: radial-gradient(circle, rgba(124, 58, 237, 0.22) 0%, transparent 70%);
+  animation: siAuroraShift1 9s ease-in-out infinite alternate;
+}
+
+.si-glow-2 {
+  width: 380px;
+  height: 380px;
+  bottom: 20%;
+  right: 22%;
+  background: radial-gradient(circle, rgba(14, 165, 233, 0.18) 0%, transparent 70%);
+  animation: siAuroraShift2 11s ease-in-out infinite alternate;
+}
+
+.si-glow-3 {
+  width: 300px;
+  height: 300px;
+  top: 45%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(circle, rgba(236, 72, 153, 0.12) 0%, transparent 70%);
+  animation: siAuroraShift3 8s ease-in-out infinite alternate;
+}
+
+@keyframes siAuroraShift1 {
+  0%   { transform: translate(0, 0) scale(1); }
+  100% { transform: translate(60px, 40px) scale(1.2); }
+}
+
+@keyframes siAuroraShift2 {
+  0%   { transform: translate(0, 0) scale(1); }
+  100% { transform: translate(-50px, -50px) scale(0.85); }
+}
+
+@keyframes siAuroraShift3 {
+  0%   { transform: translate(-50%, -50%) scale(0.9); opacity: 0.6; }
+  100% { transform: translate(-50%, -50%) scale(1.3); opacity: 1; }
+}
+
+/* ── Floating Stardust Particles ─────────────────────────────────── */
+.si-particles-layer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 2;
+  overflow: hidden;
+}
+
+.si-particle {
+  position: absolute;
+  border-radius: 50%;
+  background: radial-gradient(circle, #ffffff 30%, rgba(167, 139, 250, 0.8) 100%);
+  box-shadow: 0 0 6px rgba(167, 139, 250, 0.8);
+  animation: siParticleDrift linear infinite;
+  opacity: 0.6;
+}
+
+@keyframes siParticleDrift {
+  0% {
+    transform: translateY(0) scale(0.8);
+    opacity: 0;
+  }
+  30% {
+    opacity: 0.8;
+  }
+  70% {
+    opacity: 0.6;
+  }
+  100% {
+    transform: translateY(-80px) scale(1.2);
+    opacity: 0;
+  }
+}
+
+/* ── Skip Button ─────────────────────────────────────────────────── */
+.si-skip {
+  position: absolute;
+  top: 24px;
+  right: 26px;
+  z-index: 30;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(15, 15, 25, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 999px;
+  padding: 6px 16px;
+  font-family: 'Space Grotesk', 'Inter', sans-serif;
+  font-size: 0.74rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  color: rgba(255, 255, 255, 0.55);
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+}
+
+.si-skip:hover {
+  background: rgba(124, 58, 237, 0.15);
+  border-color: rgba(167, 139, 250, 0.5);
+  color: #ffffff;
+  transform: translateY(-2px);
+  box-shadow: 0 0 20px rgba(167, 139, 250, 0.3);
+}
+
+.si-skip kbd {
+  font-size: 0.62rem;
+  color: #38bdf8;
+  background: rgba(56, 189, 248, 0.12);
+  border: 1px solid rgba(56, 189, 248, 0.25);
+  padding: 1px 6px;
+  border-radius: 4px;
+  font-family: inherit;
+}
+
+/* ── Center Hero Block ────────────────────────────────────────────── */
+.si-center {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.25rem;
+  user-select: none;
+  max-width: 680px;
+  width: 90%;
+  animation: siCenterFloat 4.5s ease-in-out infinite alternate;
+}
+
+@keyframes siCenterFloat {
+  0%   { transform: translateY(0); }
+  100% { transform: translateY(-6px); }
+}
+
+/* ── 3D Gyroscope Orbiting Avatar ─────────────────────────────────── */
+.si-gyro-wrap {
+  position: relative;
+  width: 140px;
+  height: 140px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  perspective: 600px;
+}
+
+/* Outer Orbit */
+.si-orbit-outer {
+  position: absolute;
+  width: 130px;
+  height: 130px;
+  border-radius: 50%;
+  border: 1.5px dashed rgba(56, 189, 248, 0.4);
+  transform: rotateX(65deg) rotateZ(0deg);
+  animation: siSpinOrbitOuter 5s linear infinite;
+  box-shadow: 0 0 15px rgba(56, 189, 248, 0.15);
+}
+
+@keyframes siSpinOrbitOuter {
+  0%   { transform: rotateX(65deg) rotateZ(0deg); }
+  100% { transform: rotateX(65deg) rotateZ(360deg); }
+}
+
+/* Inner Orbit */
+.si-orbit-inner {
+  position: absolute;
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(167, 139, 250, 0.45);
+  transform: rotateY(65deg) rotateZ(0deg);
+  animation: siSpinOrbitInner 4s linear infinite reverse;
+  box-shadow: 0 0 15px rgba(167, 139, 250, 0.2);
+}
+
+@keyframes siSpinOrbitInner {
+  0%   { transform: rotateY(65deg) rotateZ(0deg); }
+  100% { transform: rotateY(65deg) rotateZ(360deg); }
+}
+
+/* Satellites */
+.si-satellite {
+  position: absolute;
+  top: -4px;
+  left: 50%;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  transform: translateX(-50%);
+}
+
+.si-sat-cyan {
+  background: #38bdf8;
+  box-shadow: 0 0 12px 3px rgba(56, 189, 248, 0.9);
+}
+
+.si-sat-purple {
+  background: #c084fc;
+  box-shadow: 0 0 12px 3px rgba(192, 132, 252, 0.9);
+}
+
+/* Sonar Waves */
+.si-sonar-wave {
+  position: absolute;
+  width: 76px;
+  height: 76px;
+  border-radius: 50%;
+  border: 1px solid rgba(167, 139, 250, 0.5);
+  animation: siSonarPing 2.5s cubic-bezier(0.1, 0.8, 0.2, 1) infinite;
+}
+
+.si-sonar-2 {
+  animation-delay: 1.25s;
+}
+
+@keyframes siSonarPing {
+  0% {
+    transform: scale(0.9);
+    opacity: 0.8;
+  }
+  100% {
+    transform: scale(2.2);
+    opacity: 0;
+  }
+}
+
+/* Central Monogram */
+.si-avatar {
+  position: relative;
+  z-index: 5;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, #1e1b4b 0%, #0c0a1a 80%);
+  border: 2px solid rgba(167, 139, 250, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow:
+    0 0 0 4px rgba(139, 92, 246, 0.15),
+    0 0 35px rgba(139, 92, 246, 0.4),
+    inset 0 0 20px rgba(139, 92, 246, 0.3);
+  animation: siAvatarPop 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+
+@keyframes siAvatarPop {
+  0% {
+    transform: scale(0.4) rotate(-30deg);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1) rotate(0deg);
+    opacity: 1;
+  }
+}
+
+.si-avatar-glow {
+  position: absolute;
+  inset: -2px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, rgba(56, 189, 248, 0.5), rgba(167, 139, 250, 0.5));
+  filter: blur(8px);
+  z-index: -1;
+  animation: siGlowPulse 3s ease-in-out infinite alternate;
+}
+
+@keyframes siGlowPulse {
+  0%   { opacity: 0.5; transform: scale(0.95); }
+  100% { opacity: 1; transform: scale(1.15); }
+}
+
+.si-avatar-letter {
+  font-family: 'Space Grotesk', 'Inter', sans-serif;
+  font-size: 2rem;
+  font-weight: 800;
+  color: #ffffff;
+  line-height: 1;
+  text-shadow:
+    0 0 20px rgba(167, 139, 250, 0.9),
+    0 0 40px rgba(56, 189, 248, 0.6);
+}
+
+/* ── Staggered 3D Animated Letters for Name ───────────────────────── */
+.si-name-wrap {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  perspective: 800px;
+}
+
+.si-name {
+  margin: 0;
+  display: flex;
+  font-family: 'Space Grotesk', 'Inter', sans-serif;
+  font-size: clamp(2.4rem, 7vw, 3.8rem);
+  font-weight: 800;
+  letter-spacing: 0.04em;
+}
+
+.si-char {
+  display: inline-block;
+  background: linear-gradient(
+    135deg,
+    #ffffff 0%,
+    #f1f5f9 25%,
+    #c4b5fd 50%,
+    #38bdf8 75%,
+    #ffffff 100%
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  transform-origin: 50% 100%;
+  animation: siCharFlip 0.75s cubic-bezier(0.34, 1.56, 0.64, 1) both,
+             siTextShine 3.5s linear infinite;
+  text-shadow: 0 0 25px rgba(167, 139, 250, 0.4);
+}
+
+@keyframes siCharFlip {
+  0% {
+    opacity: 0;
+    transform: rotateX(85deg) translateY(24px) scale(0.7);
+  }
+  100% {
+    opacity: 1;
+    transform: rotateX(0deg) translateY(0) scale(1);
+  }
+}
+
+@keyframes siTextShine {
+  0%   { background-position: 0% center; }
+  100% { background-position: 200% center; }
+}
+
+.si-name-badge {
+  font-family: 'Space Grotesk', monospace;
+  font-size: clamp(0.9rem, 2.2vw, 1.15rem);
+  font-weight: 700;
+  color: #38bdf8;
+  background: rgba(56, 189, 248, 0.1);
+  border: 1px solid rgba(56, 189, 248, 0.35);
+  padding: 3px 8px;
+  border-radius: 6px;
+  letter-spacing: 0.06em;
+  box-shadow: 0 0 14px rgba(56, 189, 248, 0.25);
+  animation: siFadeUp 0.6s ease 0.6s both;
+}
+
+/* ── Tagline ──────────────────────────────────────────────────────── */
+.si-tagline {
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: 'Inter', sans-serif;
+  font-size: clamp(0.78rem, 2vw, 0.95rem);
+  font-weight: 500;
+  color: rgba(226, 232, 240, 0.8);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  animation: siFadeUp 0.7s ease 0.65s both;
+}
+
+.si-tagline-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #10b981;
+  box-shadow: 0 0 12px #10b981;
+  animation: siDotPulse 1.8s ease-in-out infinite;
+}
+
+@keyframes siDotPulse {
+  0%, 100% { transform: scale(1); opacity: 0.8; }
+  50%       { transform: scale(1.4); opacity: 1; box-shadow: 0 0 18px #10b981; }
+}
+
+/* ── Floating Animated Tech Stack Pills ───────────────────────────── */
+.si-pills-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.6rem;
+  margin-top: 0.2rem;
+}
+
+.si-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(18, 18, 30, 0.75);
+  border: 1px solid rgba(139, 92, 246, 0.3);
+  border-radius: 999px;
+  padding: 5px 14px;
+  font-family: 'Space Grotesk', 'Inter', sans-serif;
+  font-size: 0.76rem;
+  font-weight: 600;
+  color: #e2e8f0;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(8px);
+  opacity: 0;
+  transform: translateY(14px) scale(0.9);
+  transition: all 0.2s ease;
+}
+
+.si-pills-visible .si-pill {
+  animation: siPillPopIn 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+
+@keyframes siPillPopIn {
+  0% {
+    opacity: 0;
+    transform: translateY(14px) scale(0.85);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.si-pill-icon {
+  font-size: 0.88rem;
+}
+
+.si-pill:hover {
+  border-color: rgba(56, 189, 248, 0.6);
+  transform: translateY(-2px) scale(1.04);
+  box-shadow: 0 0 18px rgba(56, 189, 248, 0.3);
+}
+
+/* ── Precision Laser Telemetry Box & Progress Bar ─────────────────── */
+.si-telemetry-box {
+  width: 100%;
+  max-width: 380px;
+  margin-top: 0.6rem;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  animation: siFadeUp 0.6s ease 0.8s both;
+}
+
+.si-telemetry-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: 'JetBrains Mono', 'Space Grotesk', monospace;
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  color: rgba(148, 163, 184, 0.8);
+}
+
+.si-tele-status {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: #94a3b8;
+}
+
+.si-tele-blink {
+  color: #38bdf8;
+  animation: siBlink 1s infinite alternate;
+}
+
+@keyframes siBlink {
+  0%   { opacity: 0.3; }
+  100% { opacity: 1; }
+}
+
+.si-tele-pct {
+  color: #38bdf8;
+  font-weight: 700;
+}
+
+.si-progress-track {
+  width: 100%;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 999px;
+  overflow: hidden;
+  position: relative;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.6);
+}
+
+.si-progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #6366f1 0%, #a855f7 50%, #38bdf8 100%);
+  border-radius: 999px;
+  position: relative;
+  transition: width 0.08s linear;
+  box-shadow: 0 0 16px rgba(56, 189, 248, 0.7);
+}
+
+.si-laser-spark {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #ffffff;
+  box-shadow:
+    0 0 10px 2px #ffffff,
+    0 0 20px 4px #38bdf8;
+  transform: translate(50%, -50%);
+}
+
+@keyframes siFadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ── Mobile Responsive Adjustments ────────────────────────────────── */
+@media (max-width: 640px) {
+  .si-center {
+    gap: 1rem;
+    width: 94%;
+  }
+
+  .si-gyro-wrap {
+    width: 110px;
+    height: 110px;
+  }
+
+  .si-orbit-outer {
+    width: 105px;
+    height: 105px;
+  }
+
+  .si-orbit-inner {
+    width: 90px;
+    height: 90px;
+  }
+
+  .si-avatar {
+    width: 68px;
+    height: 68px;
+  }
+
+  .si-avatar-letter {
+    font-size: 1.6rem;
+  }
+
+  .si-pill {
+    padding: 4px 10px;
+    font-size: 0.7rem;
+  }
+
+  .si-telemetry-box {
+    max-width: 290px;
+  }
 }
 

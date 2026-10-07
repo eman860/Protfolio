@@ -18,7 +18,7 @@ import ResumeModal from './ResumeModal';
 import CommandPalette from './components/CommandPalette';
 import AiAssistant from './components/AiAssistant';
 import EasterEggs from './components/EasterEggs';
-import AiBackground from './components/AiBackground';
+
 import MouseSpotlight from './components/MouseSpotlight';
 import IntroScreen from './components/IntroScreen';
 
@@ -29,13 +29,10 @@ export default function App() {
   const [easterEggOpen, setEasterEggOpen] = useState(false);
   const [scrollProgress, setScrollProgress] = useState(0);
 
-  // Show intro once per session (not on every hot-reload)
-  const [introComplete, setIntroComplete] = useState(() => {
-    return sessionStorage.getItem('intro-done') === '1';
-  });
+  // Show intro screen
+  const [introComplete, setIntroComplete] = useState(false);
 
   const handleIntroComplete = () => {
-    sessionStorage.setItem('intro-done', '1');
     setIntroComplete(true);
   };
 
@@ -81,8 +78,7 @@ export default function App() {
           aria-hidden="true"
         />
 
-        {/* AI-style Neural Network Background */}
-        <AiBackground />
+
 
         {/* Mouse Spotlight — desktop only */}
         <MouseSpotlight />
